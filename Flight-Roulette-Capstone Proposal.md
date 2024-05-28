@@ -1,20 +1,25 @@
 # Project Title
 
+Flight Roulette
+
 ## Overview
 
-What is your app? Brief description in a couple of sentences.
+A game to help people decide which vacation destination to travel to.
 
 ### Problem
 
-Why is your app needed? Background information around any pain points or other reasons.
+One of the most fun part of a vacation is the planning stage. However there are so many wonderful places to visit on Earth that sometimes all those options can be daunting. Flight Roulette aims to help decision process by turning the decision process into a fun game.
 
 ### User Profile
 
-Who will use your app? How will they use it? Any special considerations that your app must take into account.
+World Travellers:
+-Friends/Family Travelers
+-Couples/Honeymoon Travelers
+-Solo Explorers
 
 ### Features
 
-List the functionality that your app will include. These can be written as user stories or descriptions with related details. Do not describe _how_ these features are implemented, only _what_ needs to be implemented.
+-   As a user I
 
 ## Implementation
 
@@ -36,7 +41,7 @@ Provide visuals of your app's screens. You can use tools like Figma or pictures 
 
 ### Data
 
-Describe your data and the relationships between them. You can show this visually using diagrams, or write it out. 
+Describe your data and the relationships between them. You can show this visually using diagrams, or write it out.
 
 ### Endpoints
 
