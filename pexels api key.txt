@@ -1,0 +1,4 @@
+Pexels Api key=buF1JtRRcElBFFryS3NX3UXxDhh8kuPpDIOSXiR4Gak6w5nG3jf85N4d
+
+I may or may not use this key i am not sure. i think i will be making my own api using links to pexels images.
+this way the images can be curated.
