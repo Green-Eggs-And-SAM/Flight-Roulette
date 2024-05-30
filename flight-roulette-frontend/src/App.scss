@@ -1,0 +1,37 @@
+@use "./styles/variables" as *;
+.app-container {
+    @include mobile-padding;
+    @include tablet {
+        @include tablet-padding;
+    }
+    @include desktop {
+        @include desktop-padding;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.frame {
+    &__soft-black {
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 1rem;
+    }
+}

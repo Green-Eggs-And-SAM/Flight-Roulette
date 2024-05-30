@@ -1,0 +1,38 @@
+$tablet-width: 768px;
+$desktop-width: 1280px;
+
+@mixin tablet {
+    @media (min-width: $tablet-width) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktop-width) {
+        @content;
+    }
+}
+
+@mixin desktop-padding {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+@mixin tablet-padding {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+@mixin mobile-padding {
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+$flight-roulette-blue: #0095ff;
+$flight-roulette-darkblue: #006bb7;
+
+$flight-roulette-amber: #ffc400;
+$flight-roulette-darkamber: #d1a000;
+
+$flight-roulette-darkgrey: #323232;

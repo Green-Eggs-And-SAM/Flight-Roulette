@@ -1,0 +1,80 @@
+@use "../../styles/variables" as *;
+
+#earthVideo {
+    position: absolute;
+    top: 0;
+
+    right: 0;
+
+    width: 140vw;
+}
+
+.video-container {
+    /* Make video to at least 100% wide and tall */
+    min-width: 100%;
+    min-height: 100%;
+    background-color: black;
+    z-index: -1;
+
+    /* Center the video */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+    &__title {
+        margin: 0;
+        background-color: $flight-roulette-amber;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        font-style: italic;
+        &--large {
+            font-size: 3rem;
+            @include tablet {
+                font-size: 4rem;
+            }
+        }
+    }
+
+    &__subtitle {
+        color: $flight-roulette-amber;
+        font-style: italic;
+        text-shadow: 2px 2px #000;
+        font-size: 1rem;
+        @include tablet {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.button {
+    width: 100%;
+
+    @include tablet {
+        width: 12rem;
+    }
+    height: 3rem;
+    border-radius: 2rem;
+    &__row {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    &__start {
+        background-color: $flight-roulette-blue;
+    }
+}
