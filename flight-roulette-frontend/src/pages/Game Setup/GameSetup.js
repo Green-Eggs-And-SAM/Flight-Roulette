@@ -1,5 +1,7 @@
+import { useState } from "react";
+
 function GameSetup() {
-    let storedList = [
+    let startingList = [
         "hawaii",
         "greece",
         "scotland",
@@ -9,12 +11,27 @@ function GameSetup() {
         "rome",
         "paris",
     ];
-    let yourList = [];
+    const [availableList, setAvailableList] = useState(startingList);
+    const [yourList, setYourList] = useState([]);
 
+    function deleteItemFromArray(itemToDelete, array) {
+        const foundIndex = array.findIndex((item) => item == itemToDelete);
+        const updatedList = [
+            ...array.slice(0, foundIndex),
+            ...array.slice(foundIndex + 1),
+        ];
+        return updatedList;
+    }
+    //add to your list
+    //remove from availableList
     const addToYourList = (item) => {
-        const found = storedList.findIndex((storedItem) => storedItem == item);
+        setAvailableList(deleteItemFromArray(item, availableList));
+        setYourList([...yourList, item]);
+    };
 
-        console.log(found);
+    const removeFromYourList = (item) => {
+        setAvailableList([...availableList, item]);
+        setYourList(deleteItemFromArray(item, yourList));
     };
 
     return (
@@ -22,7 +39,7 @@ function GameSetup() {
             <h1>game setup</h1>
             <section>
                 <ul>
-                    {storedList.map((item) => (
+                    {availableList.map((item) => (
                         <li className="frame__soft-black">
                             <h3>{item}</h3>
                             <button onClick={() => addToYourList(item)}>
