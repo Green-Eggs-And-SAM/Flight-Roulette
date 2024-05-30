@@ -1,4 +1,3 @@
-// import bgVideo from "../../assets/earth-video.mp4";
 import "./BackgroundVideo.scss";
 
 function BackgroundVideo(props) {
