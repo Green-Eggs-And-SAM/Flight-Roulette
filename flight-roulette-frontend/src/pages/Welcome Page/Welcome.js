@@ -1,12 +1,17 @@
 import "./Welcome.scss";
 import "../../App.scss";
-import bgVideo from "../../assets/earth-video.mp4";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Welcome() {
     const [hiddenH2P, setHowToPlayHidden] = useState(false);
+    const navigate = useNavigate();
     function showHowToPlay() {
         setHowToPlayHidden(true);
+    }
+
+    function start() {
+        navigate("/setup");
     }
     return (
         <>
@@ -39,7 +44,9 @@ function Welcome() {
                     >
                         How To Play
                     </button>
-                    <button className="button">Start</button>
+                    <button onClick={start} className="button">
+                        Start
+                    </button>
                 </div>
             </main>
         </>

@@ -1,14 +1,16 @@
-import bgVideo from "../../assets/earth-video.mp4";
+// import bgVideo from "../../assets/earth-video.mp4";
+import "./BackgroundVideo.scss";
 
-function BackgroundVideo() {
+function BackgroundVideo(props) {
+    console.log(props);
     return (
         <div className="video-container">
             <video
-                src={bgVideo}
+                src={props.featuredVid}
                 autoPlay
                 muted
                 loop
-                id="earthVideo"
+                className="videoPos "
                 typeof="video/mp4"
             >
                 Your browser does not support HTML5 video.
