@@ -13,7 +13,8 @@ function GameSetup() {
     ];
     const [availableList, setAvailableList] = useState(startingList);
     const [yourList, setYourList] = useState([]);
-
+    console.log(availableList);
+    console.log(yourList);
     function deleteItemFromArray(itemToDelete, array) {
         const foundIndex = array.findIndex((item) => item == itemToDelete);
         const updatedList = [
@@ -44,6 +45,17 @@ function GameSetup() {
                             <h3>{item}</h3>
                             <button onClick={() => addToYourList(item)}>
                                 +
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+
+                <ul className="frame__soft-blue">
+                    {yourList.map((item) => (
+                        <li>
+                            <h3>{item}</h3>
+                            <button onClick={() => removeFromYourList(item)}>
+                                -
                             </button>
                         </li>
                     ))}
