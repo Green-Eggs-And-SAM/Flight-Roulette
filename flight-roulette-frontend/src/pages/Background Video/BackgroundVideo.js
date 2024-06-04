@@ -1,7 +1,7 @@
 import "./BackgroundVideo.scss";
 
 function BackgroundVideo(props) {
-    console.log(props);
+    // console.log(props);
     return (
         <div className="video-container">
             <video

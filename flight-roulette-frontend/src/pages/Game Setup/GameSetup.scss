@@ -1,0 +1,18 @@
+.selection {
+    &__container {
+        display: flex;
+        flex-direction: row;
+
+        & li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            & button {
+                width: 2rem;
+                height: 2rem;
+                border: none;
+                border-radius: 50%;
+            }
+        }
+    }
+}
