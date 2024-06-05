@@ -4,11 +4,14 @@ import Welcome from "./pages/Welcome Page/Welcome";
 import GameSetup from "./pages/Game Setup/GameSetup";
 import BackgroundVideo from "./pages/Background Video/BackgroundVideo";
 import defaultVideo from "./assets/videos/earth-video.mp4";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
     const [featuredVid, setFeaturedVid] = useState(defaultVideo);
-
+    const [finalList, setFinalList] = useState([]);
+    useEffect(() => {
+        console.log(finalList);
+    }, [finalList]);
     return (
         <>
             <main className="app-container">
@@ -17,7 +20,10 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Welcome />} />
 
-                        <Route path="/setup" element={<GameSetup />} />
+                        <Route
+                            path="/setup"
+                            element={<GameSetup setFinalList={setFinalList} />}
+                        />
                     </Routes>
                 </BrowserRouter>
             </main>
