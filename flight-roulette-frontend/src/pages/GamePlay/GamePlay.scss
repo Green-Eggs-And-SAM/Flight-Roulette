@@ -5,3 +5,12 @@
 .fade-out {
     opacity: 0;
 }
+
+.hide-container {
+    position: relative;
+    transition: transform 0.6s ease-in-out;
+}
+
+.hide {
+    transform: translateY(100%);
+}

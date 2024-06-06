@@ -10,19 +10,24 @@ function GamePlay(finalList) {
     const [leftIndex, setLeftIndex] = useState(0);
     const [featuredVid, setFeaturedVid] = useState();
     const [voteStatus, setVoteStatus] = useState("");
+    const [cardsHidden, setHidden] = useState(false);
 
     useEffect(() => {
         console.log(finalList.finalList[0].landscape[0]);
     }, [finalList]);
 
     const leftVote = () => {
-        console.log("left");
         setVoteStatus("l");
+        nextRound();
     };
 
     const rightVote = () => {
-        console.log("right");
         setVoteStatus("r");
+        nextRound();
+    };
+
+    const nextRound = () => {
+        setHidden(true);
     };
 
     return (
@@ -36,7 +41,11 @@ function GamePlay(finalList) {
                     Round {round} of {finalList.finalList.length}
                 </p>
             </header>
-            <div className="choice__container center">
+            <div
+                className={`choice__container center hide-container ${
+                    cardsHidden ? "hide" : ""
+                }`}
+            >
                 <div
                     className={`column center fade-out-container 
                     ${voteStatus === "r" ? "fade-out" : ""}
