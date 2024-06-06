@@ -2,22 +2,28 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome Page/Welcome";
 import GameSetup from "./pages/Game Setup/GameSetup";
-
-import defaultVideo from "./assets/videos/earth-video.mp4";
 import GamePlay from "./pages/GamePlay/GamePlay";
+import GameWinner from "./pages/GameWinner/GameWinner";
 import { useEffect, useState } from "react";
 
 function App() {
-    const [featuredVid, setFeaturedVid] = useState(defaultVideo);
     const [finalList, setFinalList] = useState([]);
-
+    const [winners, setWinners] = useState([]);
+    const [honorableMentionsList, setHonorableMentionsList] = useState([]);
     // useEffect(() => {
     //     console.log(finalList);
     // }, [finalList]);
     const gameReady = (list) => {
         setFinalList(list);
-        setFeaturedVid(undefined);
     };
+
+    function deleteItemFromList(index) {
+        const updatedList = [
+            ...finalList.slice(0, index),
+            ...finalList.slice(index + 1),
+        ];
+        setFinalList(updatedList);
+    }
     return (
         <>
             <main className="app-container">
@@ -31,7 +37,28 @@ function App() {
                         />
                         <Route
                             path="/play"
-                            element={<GamePlay finalList={finalList} />}
+                            element={
+                                <GamePlay
+                                    finalList={finalList}
+                                    deleteItemFromList={deleteItemFromList}
+                                    setWinners={setWinners}
+                                    setHonorableMentionsList={
+                                        setHonorableMentionsList
+                                    }
+                                />
+                            }
+                        />
+
+                        <Route
+                            path="/winner"
+                            element={
+                                <GameWinner
+                                    winners={winners}
+                                    honorableMentionsList={
+                                        honorableMentionsList
+                                    }
+                                />
+                            }
                         />
                     </Routes>
                 </BrowserRouter>
