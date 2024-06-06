@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./GameSetup.scss";
 import axios from "axios";
+import featuredVid from "../../assets/videos/earth-video.mp4";
+import BackgroundVideo from "../Background Video/BackgroundVideo";
 
 function GameSetup(props) {
     const [availableList, setAvailableList] = useState([]);
     const [yourList, setYourList] = useState([]);
     const [loading, setLoading] = useState(true);
     const baseUrl = "http://localhost:5050";
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchNames = async () => {
             try {
@@ -61,12 +64,15 @@ function GameSetup(props) {
 
     const createFinalList = async () => {
         let final = [];
+
         for (let i = 0; i < yourList.length; i++) {
             const obj = await fetchDestinationObj(yourList[i]);
+            obj.points = 0;
             final = [...final, obj];
         }
         console.log(final);
-        props.setFinalList(final);
+        props.gameReady(final);
+        navigate("/play");
     };
 
     //================= HTML ====================
@@ -76,6 +82,7 @@ function GameSetup(props) {
         console.log(availableList.length);
         return (
             <>
+                <BackgroundVideo featuredVid={featuredVid} />
                 <div className="center column">
                     <h1>game setup</h1>
                     <section className="selection__container">

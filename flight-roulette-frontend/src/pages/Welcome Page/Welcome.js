@@ -2,6 +2,8 @@ import "./Welcome.scss";
 import "../../App.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BackgroundVideo from "../Background Video/BackgroundVideo";
+import featuredVid from "../../assets/videos/earth-sim.mp4";
 
 function Welcome() {
     const [hiddenH2P, setHowToPlayHidden] = useState(false);
@@ -15,6 +17,7 @@ function Welcome() {
     }
     return (
         <>
+            <BackgroundVideo featuredVid={featuredVid} />
             <main className="main-container">
                 <header className="welcome">
                     <div className="column center">
