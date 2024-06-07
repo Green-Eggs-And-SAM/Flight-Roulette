@@ -108,7 +108,7 @@ function GamePlay(props) {
 
     const startNextRound = async () => {
         console.log("props.finalList", props.finalList);
-        await wait(500);
+        // await wait(500);
         const nextRound = round + 1;
         setRound(nextRound);
         let nextIndex = leftIndex + 1;
