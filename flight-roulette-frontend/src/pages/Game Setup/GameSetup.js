@@ -63,10 +63,14 @@ function GameSetup(props) {
     };
 
     const createFinalList = async () => {
+        if (yourList.length < 4) {
+            alert("Please add at least 4 destinations to your list");
+            return;
+        }
         let final = [];
 
         for (let i = 0; i < yourList.length; i++) {
-            const obj = await fetchDestinationObj(yourList[i]);
+            const obj = await fetchDestinationObj(yourList[i].name);
             obj.points = 0;
             final = [...final, obj];
         }
@@ -86,20 +90,23 @@ function GameSetup(props) {
                 <div className="center column">
                     <h1>game setup</h1>
                     <section className="selection__container">
-                        <article>
+                        <article className="country">
                             <h1 className="frame__soft-black">
                                 Available Destinations:{" "}
                             </h1>
                             <ul className="country__ul">
                                 {availableList.map((item) => (
                                     <li className="frame__soft-black country__li">
-                                        <h5>{item.name}</h5>
+                                        <h5 className="no-margin">
+                                            {item.name}
+                                        </h5>
                                         <img
                                             className="country__li--flag"
                                             src={item.flag}
                                         />
                                         <button
                                             onClick={() => addToYourList(item)}
+                                            className="setup-button setup-button__green"
                                         >
                                             +
                                         </button>
@@ -107,25 +114,34 @@ function GameSetup(props) {
                                 ))}
                             </ul>
                         </article>
-                        <ul className="frame__soft-blue your-list__ul">
-                            <li>
-                                <h1>Your Destinations: </h1>
-                            </li>
-                            {yourList.map((item) => (
-                                <li>
-                                    <h5>{item.name}</h5>
-                                    <button
-                                        onClick={() => removeFromYourList(item)}
-                                    >
-                                        -
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
+                        <article className="your-list">
+                            <h1 className="frame__soft-blue">Your List </h1>
+                            <ul className="frame__soft-blue your-list__ul">
+                                {yourList.map((item) => (
+                                    <li className="country__li your-list__li">
+                                        <h5 className="no-margin">
+                                            {item.name}
+                                        </h5>
+                                        <img
+                                            className="country__li--flag"
+                                            src={item.flag}
+                                        />
+                                        <button
+                                            onClick={() =>
+                                                removeFromYourList(item)
+                                            }
+                                            className="setup-button "
+                                        >
+                                            -
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </article>
                     </section>
                     <section className="row">
                         <button className="button">BACK</button>
-                        <button className="button" onClick={createFinalList}>
+                        <button className="button " onClick={createFinalList}>
                             PLAY FLIGHT ROULETTE
                         </button>
                     </section>

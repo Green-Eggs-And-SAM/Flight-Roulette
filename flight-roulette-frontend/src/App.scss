@@ -15,6 +15,10 @@ ul {
     }
 }
 
+button {
+    border: 0;
+}
+
 .hidden {
     display: none;
 }
@@ -38,15 +42,30 @@ ul {
 .frame {
     &__soft-black {
         padding: 1rem;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.8);
         border-radius: 1rem;
         color: white;
     }
 
     &__soft-blue {
         padding: 1rem;
-        background-color: rgba(0, 157, 255, 0.7);
+        background-color: rgba(0, 157, 255, 0.8);
         border-radius: 1rem;
         color: black;
     }
+
+    &__soft-white {
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 1rem;
+        color: black;
+    }
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
 }
