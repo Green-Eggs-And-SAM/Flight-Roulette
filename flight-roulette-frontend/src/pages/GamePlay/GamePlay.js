@@ -72,6 +72,18 @@ function GamePlay(props) {
         props.deleteItemFromList(cardIndexLoser);
     };
 
+    const startNextRound = async () => {
+        console.log("props.finalList", props.finalList);
+        // await wait(500);
+        const nextRound = round + 1;
+        setRound(nextRound);
+        let nextIndex = leftIndex + 1;
+        if (nextIndex >= props.finalList.length - 1) nextIndex = 0; // don't go out of bounds
+        setLeftIndex(nextIndex);
+        setVoteStatus("");
+        setHidden(false);
+    };
+
     //exmaple logic
     //using tournament style single elimination bracket
     //example starting list:
@@ -105,18 +117,6 @@ function GamePlay(props) {
     // hawaii is the winner.
     // vietnam in 2nd place with 1 point.
     // scotland and greece tied for 3rd with 0 points.
-
-    const startNextRound = async () => {
-        console.log("props.finalList", props.finalList);
-        // await wait(500);
-        const nextRound = round + 1;
-        setRound(nextRound);
-        let nextIndex = leftIndex + 1;
-        if (nextIndex >= props.finalList.length - 1) nextIndex = 0; // don't go out of bounds
-        setLeftIndex(nextIndex);
-        setVoteStatus("");
-        setHidden(false);
-    };
 
     return (
         <>
@@ -156,6 +156,7 @@ function GamePlay(props) {
                     <Card
                         obj={props.finalList[leftIndex + 1]}
                         vote={rightVote}
+                        offset={true}
                     />
                 </div>
             </div>
