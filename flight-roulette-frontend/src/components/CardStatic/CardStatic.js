@@ -7,31 +7,25 @@ function CardStatic(props) {
     const interval = 3000;
     // console.table(props.obj);
     useEffect(() => {
-        // if (props.offset)
-        const wait = async (waitTime) => {
-            await new Promise((dummy) => setTimeout(dummy, waitTime));
-        };
-        // console.log(props.offset);
-        if (props.offset) wait(interval / 2);
-        if (props.offset) {
-            const repeat = setInterval(() => {
-                // next photo
-                setPhotoIndex(
-                    (prevIndex) => (prevIndex + 1) % props.obj.landscape.length
-                );
-            }, interval);
+        // if (props.offset) {
+        const repeat = setInterval(() => {
+            // next photo
+            setPhotoIndex(
+                (prevIndex) => (prevIndex + 1) % props.obj.landscape.length
+            );
+        }, interval);
 
-            return () => clearInterval(repeat);
-        } else {
-            const repeat = setInterval(() => {
-                // next photo
-                setPhotoIndex(
-                    (prevIndex) => (prevIndex + 1) % props.obj.landscape.length
-                );
-            }, interval * 2);
+        return () => clearInterval(repeat);
+        // } else {
+        //     const repeat = setInterval(() => {
+        //         // next photo
+        //         setPhotoIndex(
+        //             (prevIndex) => (prevIndex + 1) % props.obj.landscape.length
+        //         );
+        //     }, interval * 2);
 
-            return () => clearInterval(repeat);
-        }
+        //     return () => clearInterval(repeat);
+        // }
     }, []);
 
     // useEffect(() => {

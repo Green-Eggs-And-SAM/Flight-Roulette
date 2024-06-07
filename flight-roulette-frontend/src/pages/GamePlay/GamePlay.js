@@ -11,7 +11,6 @@ function GamePlay(props) {
     const [totalRounds, setTotalRounds] = useState(1);
     const [leftIndex, setLeftIndex] = useState(0); //left card index starts at 0, right card index is leftCardIndex + 1
     //increment left index + 1 on each round.
-    const [featuredVid, setFeaturedVid] = useState();
     const [voteStatus, setVoteStatus] = useState("");
     const [cardsHidden, setHidden] = useState(false);
 
@@ -120,9 +119,7 @@ function GamePlay(props) {
 
     return (
         <>
-            <BackgroundVideo
-                featuredVid={featuredVid ? featuredVid : EarthLoop}
-            />
+            <BackgroundVideo featuredVid={EarthLoop} />
             <header className="center column frame__soft-black">
                 <h1>Choose Your Prefered Destination </h1>
                 <p>
