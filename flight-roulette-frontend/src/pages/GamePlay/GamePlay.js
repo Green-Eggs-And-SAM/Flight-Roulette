@@ -18,8 +18,8 @@ function GamePlay(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.table("finalList", props.finalList);
-        console.table("eliminatedList", eliminatedList);
+        console.table(props.finalList);
+        // console.table(eliminatedList);
         if (props.finalList.length <= 1) {
             // end of game. this is the winning vote
             props.setWinners(props.finalList); //winner is last remaining item.
@@ -141,7 +141,13 @@ function GamePlay(props) {
                 >
                     <Card obj={props.finalList[leftIndex]} vote={leftVote} />
                 </div>
-                <p className="frame__soft-black">OR</p>
+                <p
+                    className={`frame__soft-black
+                ${voteStatus !== "" ? "fade-out" : ""}
+                `}
+                >
+                    OR
+                </p>
                 <div
                     className={`column center fade-out-container ${
                         voteStatus === "l" ? "fade-out" : ""
