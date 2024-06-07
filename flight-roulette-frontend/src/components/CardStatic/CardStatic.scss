@@ -1,37 +1,68 @@
-.card {
-    background-color: transparent;
-    width: 400px;
-    height: 400px;
-    perspective: 1100px;
+// .card-static {
+//     background-color: transparent;
+//     width: 400px;
+//     height: 400px;
 
-    &-container {
+//     &-container {
+//         position: relative;
+//         width: 100%;
+//         height: 100%;
+//         text-align: center;
+//         transition: transform 0.3s;
+
+//         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+//     }
+
+//     &-front {
+//         position: absolute;
+//         width: 100%;
+//         height: 100%;
+//         -webkit-backface-visibility: hidden;
+//         backface-visibility: hidden;
+//         border-radius: 1rem;
+//     }
+
+//     & img {
+//         width: 400px;
+//         height: 400px;
+//         object-fit: cover;
+//         z-index: -10;
+//         border-radius: 0.8rem;
+//     }
+// }
+
+.card-static {
+    background-color: black;
+    &__container {
         position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.3s;
-        transform-style: preserve-3d;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     }
-
-    &:hover &-container {
-        transform: rotateY(180deg);
-    }
-
-    &-front {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        border-radius: 1rem;
-    }
-
-    & img {
-        width: 400px;
-        height: 400px;
-        object-fit: cover;
-        z-index: -10;
+    &__image {
+        opacity: 1;
+        display: block;
+        width: 40vw;
+        height: 35vw;
+        transition: 0.3s ease-in-out;
         border-radius: 0.8rem;
+        object-fit: cover;
+    }
+
+    &__overlay {
+        transition: 0.3s ease-in-out;
+        opacity: 0;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        // -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        display: flex;
+    }
+
+    &:hover &__image {
+        opacity: 0.6;
+    }
+
+    &:hover &__overlay {
+        opacity: 1;
     }
 }

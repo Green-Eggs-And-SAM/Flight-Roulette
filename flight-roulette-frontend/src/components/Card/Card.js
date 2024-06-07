@@ -17,14 +17,14 @@ function Card(props) {
                             >
                                 Hotels in {props.obj.name}{" "}
                             </a>
-                            <button
+                            {/* <button
                                 className={`button ${
                                     props.vote ? "" : "hidden"
                                 }`}
                                 onClick={props.vote}
                             >
                                 Vote
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </article>

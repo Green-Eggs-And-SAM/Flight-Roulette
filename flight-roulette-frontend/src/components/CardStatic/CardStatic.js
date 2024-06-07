@@ -4,18 +4,17 @@ function CardStatic(props) {
     if (props.obj) {
         return (
             <>
-                <article className="card">
-                    <div className="card-container">
-                        <div className="card-front">
-                            <img src={props.obj.landscape[0]} />
+                <article className="card-static ">
+                    <div className="card-static__container">
+                        <img
+                            className="card-static__image"
+                            src={props.obj.landscape[0]}
+                        />
+                        <div className="card-static__overlay center">
+                            <button className="button" onClick={props.vote}>
+                                Vote
+                            </button>
                         </div>
-
-                        <button
-                            className={`button ${props.vote ? "" : "hidden"}`}
-                            onClick={props.vote}
-                        >
-                            Vote
-                        </button>
                     </div>
                 </article>
             </>

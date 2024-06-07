@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Card from "../../components/Card/Card";
+import Card from "../../components/CardStatic/CardStatic";
 import EarthLoop from "../../assets/videos/earth-loop.mp4";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
 import "./GamePlay.scss";
