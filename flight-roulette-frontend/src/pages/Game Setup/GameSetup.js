@@ -12,9 +12,9 @@ function GameSetup(props) {
     const baseUrl = "http://localhost:5050";
     const navigate = useNavigate();
     useEffect(() => {
-        const fetchNames = async () => {
+        const fetchNamesAndFlags = async () => {
             try {
-                const targetURL = `${baseUrl}/destinations/names`;
+                const targetURL = `${baseUrl}/destinations/names-flags-list`;
 
                 // console.log(targetURL);
                 const response = await axios.get(targetURL);
@@ -26,7 +26,7 @@ function GameSetup(props) {
             }
         };
         setLoading(true);
-        fetchNames();
+        fetchNamesAndFlags();
     }, []);
 
     //============= array manipulation ================
@@ -86,26 +86,34 @@ function GameSetup(props) {
                 <div className="center column">
                     <h1>game setup</h1>
                     <section className="selection__container">
-                        <ul>
-                            <li className="frame__soft-black">
-                                <h1>Available Destinations: </h1>
-                            </li>
-                            {availableList.map((item) => (
-                                <li className="frame__soft-black">
-                                    <h5>{item}</h5>
-                                    <button onClick={() => addToYourList(item)}>
-                                        +
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                        <ul className="frame__soft-blue">
+                        <article>
+                            <h1 className="frame__soft-black">
+                                Available Destinations:{" "}
+                            </h1>
+                            <ul className="country__ul">
+                                {availableList.map((item) => (
+                                    <li className="frame__soft-black country__li">
+                                        <h5>{item.name}</h5>
+                                        <img
+                                            className="country__li--flag"
+                                            src={item.flag}
+                                        />
+                                        <button
+                                            onClick={() => addToYourList(item)}
+                                        >
+                                            +
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </article>
+                        <ul className="frame__soft-blue your-list__ul">
                             <li>
                                 <h1>Your Destinations: </h1>
                             </li>
                             {yourList.map((item) => (
                                 <li>
-                                    <h5>{item}</h5>
+                                    <h5>{item.name}</h5>
                                     <button
                                         onClick={() => removeFromYourList(item)}
                                     >

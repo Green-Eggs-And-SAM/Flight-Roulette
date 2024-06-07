@@ -16,3 +16,26 @@
         }
     }
 }
+
+.country {
+    &__ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__li {
+        width: 8rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &--flag {
+            height: 0.8rem;
+        }
+    }
+}
+
+.your-list {
+    &__ul {
+        width: 30%;
+    }
+}
