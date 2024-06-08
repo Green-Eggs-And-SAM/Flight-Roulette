@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function GameWinner(props) {
-    console.log(props.winners);
     const baseUrl = "http://localhost:5050";
     const [featuredVid, setFeaturedVid] = useState();
     useEffect(() => {
@@ -21,7 +20,34 @@ function GameWinner(props) {
                 console.log(error);
             }
         };
+
+        const addPointsToCountry = async (country) => {
+            try {
+                const data = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        pointsToAdd: parseInt(country.points),
+                    }),
+                };
+                const targetURL = `${baseUrl}/destinations/${country.name}/points`;
+
+                await axios.put(targetURL, data);
+
+                console.log(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        const updatePoints = async () => {
+            const obj = props.honorableMentionsList[0];
+            console.log(`adding points to ${obj}`);
+            addPointsToCountry(obj);
+        };
         fetchVideo();
+        updatePoints();
     }, []);
     return (
         <>

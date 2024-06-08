@@ -22,6 +22,8 @@ function GamePlay(props) {
         if (props.finalList.length <= 1) {
             // end of game. this is the winning vote
             props.setWinners(props.finalList); //winner is last remaining item.
+            //sort losers
+            eliminatedList.sort((a, b) => b.points - a.points);
             props.setHonorableMentionsList(eliminatedList);
             navigate("/winner");
         } else if (voteStatus !== "") {
@@ -56,6 +58,7 @@ function GamePlay(props) {
         const obj = {};
         obj.name = elimatedObj.name;
         obj.points = elimatedObj.points;
+        obj.flag = elimatedObj.flag;
         setEliminatedList([obj, ...eliminatedList]);
     }
 

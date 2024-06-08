@@ -117,6 +117,24 @@ function GameSetup(props) {
                         <article className="your-list">
                             <h1 className="frame__soft-blue">Your List </h1>
                             <ul className="frame__soft-blue your-list__ul">
+                                <li
+                                    className={`${
+                                        yourList.length == 0
+                                            ? `no-margin`
+                                            : `hidden `
+                                    }`}
+                                >
+                                    <p
+                                        className={`${
+                                            yourList.length == 0
+                                                ? `no-margin`
+                                                : `hidden `
+                                        }`}
+                                    >
+                                        Add any countries you are interested in
+                                        visiting.
+                                    </p>
+                                </li>
                                 {yourList.map((item) => (
                                     <li className="country__li your-list__li">
                                         <h5 className="no-margin">
