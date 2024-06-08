@@ -1,5 +1,6 @@
+import "./GameWinner.scss";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
-import Card from "../../components/Card/Card";
+import CardFlip from "../../components/CardFlip/CardFlip";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -26,9 +27,9 @@ function GameWinner(props) {
         <>
             <BackgroundVideo featuredVid={featuredVid} />
             <h1>GAME WINNER</h1>
-            <Card obj={props.winners[0]} />
-
             <h3>{props.winners[0].name}</h3>
+            <CardFlip obj={props.winners[0]} imgClass={"winner"} />
+
             <ul>
                 {props.honorableMentionsList.map((destination) => (
                     <li>

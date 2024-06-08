@@ -1,13 +1,16 @@
-import "./Card.scss";
+import "./CardFlip.scss";
 
-function Card(props) {
+function CardFlip(props) {
     if (props.obj) {
         return (
             <>
                 <article className="card">
                     <div className="card-container">
                         <div className="card-front">
-                            <img src={props.obj.landscape[0]} />
+                            <img
+                                src={props.obj.landscape[0]}
+                                className={`${props.imgClass}`}
+                            />
                         </div>
                         <div className="card-back column center">
                             <h1>{props.obj.name}</h1>
@@ -33,4 +36,4 @@ function Card(props) {
     }
 }
 
-export default Card;
+export default CardFlip;
