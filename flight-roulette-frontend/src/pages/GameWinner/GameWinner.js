@@ -7,6 +7,7 @@ import axios from "axios";
 function GameWinner(props) {
     const baseUrl = "http://localhost:5050";
     const [featuredVid, setFeaturedVid] = useState();
+    let onlyRunOnce = true;
     useEffect(() => {
         const fetchVideo = async () => {
             try {
@@ -21,33 +22,47 @@ function GameWinner(props) {
             }
         };
 
-        const addPointsToCountry = async (country) => {
+        const addPointsToCountry = async () => {
+            if (onlyRunOnce == false) return;
+            else onlyRunOnce = false; //fix a bug where points are added more than once on load.
             try {
-                const data = {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        pointsToAdd: parseInt(country.points),
-                    }),
-                };
-                const targetURL = `${baseUrl}/destinations/${country.name}/points`;
+                // const data = {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //     },
+                //     body: JSON.stringify({
+                //         pointsToAdd: parseInt(country.points),
+                //     }),
+                // };
+                const data = [];
+                console.table(props.honorableMentionsList);
+                const winnerBonus = 2;
+                data.push({
+                    name: props.winners[0].name,
+                    newPoint: props.winners[0].points + winnerBonus,
+                });
+                for (let i = 0; i < props.honorableMentionsList.length; i++) {
+                    if (props.honorableMentionsList[i].points < 1) continue; //skip if no points to add.
+                    const obj = {
+                        name: props.honorableMentionsList[i].name,
+                        newPoint: props.honorableMentionsList[i].points,
+                    };
+                    data.push(obj);
+                }
+                console.log(data);
+                const targetURL = `${baseUrl}/destinations/add-points`;
 
                 await axios.put(targetURL, data);
 
-                console.log(data);
+                // console.log(data);
             } catch (error) {
                 console.log(error);
             }
         };
-        const updatePoints = async () => {
-            const obj = props.honorableMentionsList[0];
-            console.log(`adding points to ${obj}`);
-            addPointsToCountry(obj);
-        };
+
         fetchVideo();
-        updatePoints();
+        addPointsToCountry();
     }, []);
     return (
         <>

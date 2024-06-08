@@ -67,7 +67,7 @@ function GamePlay(props) {
     };
 
     const endOfRound = async (cardIndexLoser, cardIndexWinner) => {
-        await wait(600); // show winning card for a bit
+        await wait(500); // show winning card for a bit
         setHidden(true); //slide cards down.
         await wait(300); // wait for cards to be off screen
         addToEliminatedList(cardIndexLoser);
