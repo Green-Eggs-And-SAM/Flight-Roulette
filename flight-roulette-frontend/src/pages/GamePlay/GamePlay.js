@@ -50,7 +50,7 @@ function GamePlay(props) {
         const cardIndexWinner = leftIndex + 1;
         const cardIndexLoser = leftIndex; //eliminate the other card
         props.finalList[cardIndexWinner].points++;
-        endOfRound(cardIndexLoser, cardIndexWinner);
+        endOfRound(cardIndexLoser);
     };
 
     function addToEliminatedList(index) {
@@ -66,7 +66,7 @@ function GamePlay(props) {
         await new Promise((dummy) => setTimeout(dummy, waitTime));
     };
 
-    const endOfRound = async (cardIndexLoser, cardIndexWinner) => {
+    const endOfRound = async (cardIndexLoser) => {
         await wait(500); // show winning card for a bit
         setHidden(true); //slide cards down.
         await wait(300); // wait for cards to be off screen

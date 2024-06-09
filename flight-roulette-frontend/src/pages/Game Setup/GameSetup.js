@@ -4,6 +4,7 @@ import "./GameSetup.scss";
 import axios from "axios";
 import featuredVid from "../../assets/videos/earth-video.mp4";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
+import Footer from "../../components/Footer/Footer";
 
 function GameSetup(props) {
     const [availableList, setAvailableList] = useState([]);
@@ -80,6 +81,13 @@ function GameSetup(props) {
     };
 
     //================= HTML ====================
+    const backButton = <button className="button footer__button">BACK</button>;
+    const playButton = (
+        <button className="button footer__button" onClick={createFinalList}>
+            PLAY FLIGHT ROULETTE
+        </button>
+    );
+
     if (loading) {
         return <h1>LOADING...</h1>;
     } else {
@@ -157,12 +165,13 @@ function GameSetup(props) {
                             </ul>
                         </article>
                     </section>
-                    <section className="row">
+                    {/* <section className="row">
                         <button className="button">BACK</button>
                         <button className="button " onClick={createFinalList}>
                             PLAY FLIGHT ROULETTE
                         </button>
-                    </section>
+                    </section> */}
+                    <Footer leftButton={backButton} rightButton={playButton} />
                 </div>
             </>
         );
