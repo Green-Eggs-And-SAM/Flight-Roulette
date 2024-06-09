@@ -64,7 +64,7 @@ function GameSetup(props) {
     };
 
     const createFinalList = async () => {
-        if (yourList.length < 4) {
+        if (yourList.length < 1) {
             alert("Please add at least 4 destinations to your list");
             return;
         }

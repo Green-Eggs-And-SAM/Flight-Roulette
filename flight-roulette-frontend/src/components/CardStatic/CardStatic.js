@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 function CardStatic(props) {
     const [photoIndex, setPhotoIndex] = useState(0);
 
-    const interval = 2500;
+    const interval = 1500;
     // console.table(props.obj);
     useEffect(() => {
         // if (props.offset) {
@@ -16,25 +16,7 @@ function CardStatic(props) {
         }, interval);
 
         return () => clearInterval(repeat);
-        // } else {
-        //     const repeat = setInterval(() => {
-        //         // next photo
-        //         setPhotoIndex(
-        //             (prevIndex) => (prevIndex + 1) % props.obj.landscape.length
-        //         );
-        //     }, interval * 2);
-
-        //     return () => clearInterval(repeat);
-        // }
     }, []);
-
-    // useEffect(() => {
-    //     console.log(props.obj.landscape);
-    // }, [photoIndex]);
-
-    // function nextIndex(prevIndex) {
-    //     return (prevIndex + 1) % props.obj.landscape.length;
-    // }
 
     if (props.obj) {
         return (

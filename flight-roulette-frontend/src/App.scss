@@ -7,6 +7,7 @@ ul {
 }
 .app-container {
     @include mobile-padding;
+
     @include tablet {
         @include tablet-padding;
     }
@@ -15,8 +16,15 @@ ul {
     }
 }
 
+.bg-black {
+    background-color: black;
+}
+
 button {
     border: 0;
+    &:hover {
+        background-color: $flight-roulette-amber;
+    }
 }
 
 .hidden {

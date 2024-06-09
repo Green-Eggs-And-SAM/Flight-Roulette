@@ -52,11 +52,33 @@ function Welcome() {
                         </h3>
                     </div>
                 </header>
-                <h3 className={`${!hiddenH2P && "hidden"}`}>
-                    Flight Roulette is a game yay
-                </h3>
+                <main
+                    className={`description frame__soft-black ${
+                        !hiddenH2P && "hidden"
+                    }`}
+                >
+                    <h2 className={`${!hiddenH2P && "hidden"}`}>HOW TO PLAY</h2>
+                    <h3 className={`${!hiddenH2P && "hidden"}`}>
+                        One of the most fun parts of a vacation is the planning
+                        stage. However, with all the wonderful vacation
+                        destinations all over the world, it can be difficult for
+                        one to decide on a destination to visit. Flight Roulette
+                        is a game designed to help you decide which country you
+                        are most passionate about visiting.
+                    </h3>
+
+                    <h3 className={`${!hiddenH2P && "hidden"}`}>
+                        PART 1 - SETUP <br /> Populate a list of possible
+                        locations you are interested in visiting.
+                    </h3>
+                    <h3 className={`${!hiddenH2P && "hidden"}`}>
+                        PART 2 - PLAY <br /> Narrow down the list of vacations,
+                        one-by-one
+                    </h3>
+                </main>
                 <div className="button__row"></div>
                 <Footer
+                    hide={true}
                     leftButton={howToPlayButton}
                     rightButton={startButton}
                 />

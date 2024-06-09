@@ -27,6 +27,7 @@ function App() {
     return (
         <>
             <main className="app-container">
+                <div className="bg-black"></div>
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Welcome />} />

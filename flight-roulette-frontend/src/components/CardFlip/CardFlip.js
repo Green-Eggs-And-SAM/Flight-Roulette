@@ -9,10 +9,11 @@ function CardFlip(props) {
                         <div className="card-front">
                             <img
                                 src={props.obj.landscape[0]}
-                                className={`${props.imgClass}`}
+                                className={`${props.imgClass} card__img`}
                             />
                         </div>
                         <div className="card-back column center">
+                            <img className="card__flag" src={props.obj.flag} />
                             <h1>{props.obj.name}</h1>
                             <a
                                 href={`https://www.expedia.ca/Hotel-Search?destination=${props.obj.name}`}
