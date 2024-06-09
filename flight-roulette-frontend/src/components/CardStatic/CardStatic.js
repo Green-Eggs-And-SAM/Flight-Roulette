@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 function CardStatic(props) {
     const [photoIndex, setPhotoIndex] = useState(0);
 
-    const interval = 3000;
+    const interval = 2500;
     // console.table(props.obj);
     useEffect(() => {
         // if (props.offset) {

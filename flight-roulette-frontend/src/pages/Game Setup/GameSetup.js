@@ -64,7 +64,7 @@ function GameSetup(props) {
     };
 
     const createFinalList = async () => {
-        if (yourList.length < 2) {
+        if (yourList.length < 4) {
             alert("Please add at least 4 destinations to your list");
             return;
         }
@@ -80,10 +80,18 @@ function GameSetup(props) {
         navigate("/play");
     };
 
+    const navBack = () => {
+        navigate("/");
+    };
+
     //================= HTML ====================
-    const backButton = <button className="button footer__button">BACK</button>;
+    const backButton = (
+        <button className="button footer__button" onClick={navBack}>
+            BACK
+        </button>
+    );
     const playButton = (
-        <button className="button footer__button" onClick={createFinalList}>
+        <button className="button footer__button " onClick={createFinalList}>
             PLAY FLIGHT ROULETTE
         </button>
     );

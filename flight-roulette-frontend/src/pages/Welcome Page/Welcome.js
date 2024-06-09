@@ -4,10 +4,25 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
 import featuredVid from "../../assets/videos/earth-sim.mp4";
+import Footer from "../../components/Footer/Footer";
 
 function Welcome() {
     const [hiddenH2P, setHowToPlayHidden] = useState(false);
     const navigate = useNavigate();
+    const howToPlayButton = (
+        <button
+            onClick={showHowToPlay}
+            className={`button  ${hiddenH2P && "hidden"}`}
+        >
+            How To Play
+        </button>
+    );
+
+    const startButton = (
+        <button onClick={start} className="button">
+            Start
+        </button>
+    );
     function showHowToPlay() {
         setHowToPlayHidden(true);
     }
@@ -40,17 +55,11 @@ function Welcome() {
                 <h3 className={`${!hiddenH2P && "hidden"}`}>
                     Flight Roulette is a game yay
                 </h3>
-                <div className="button__row">
-                    <button
-                        onClick={showHowToPlay}
-                        className={`button  ${hiddenH2P && "hidden"}`}
-                    >
-                        How To Play
-                    </button>
-                    <button onClick={start} className="button">
-                        Start
-                    </button>
-                </div>
+                <div className="button__row"></div>
+                <Footer
+                    leftButton={howToPlayButton}
+                    rightButton={startButton}
+                />
             </main>
         </>
     );
