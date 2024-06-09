@@ -179,7 +179,11 @@ function GameSetup(props) {
                             PLAY FLIGHT ROULETTE
                         </button>
                     </section> */}
-                    <Footer leftButton={backButton} rightButton={playButton} />
+                    <Footer
+                        leftButton={backButton}
+                        rightButton={playButton}
+                        hide={true}
+                    />
                 </div>
             </>
         );

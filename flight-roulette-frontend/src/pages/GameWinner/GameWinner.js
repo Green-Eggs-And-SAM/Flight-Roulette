@@ -2,12 +2,14 @@ import "./GameWinner.scss";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
 import CardFlip from "../../components/CardFlip/CardFlip";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function GameWinner(props) {
     const baseUrl = "http://localhost:5050";
     const [featuredVid, setFeaturedVid] = useState();
     let onlyRunOnce = true;
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchVideo = async () => {
             try {
@@ -60,26 +62,32 @@ function GameWinner(props) {
                 console.log(error);
             }
         };
-
+        if (!props.winners[0]) {
+            console.log("here");
+            navigate("/setup");
+        }
         fetchVideo();
         addPointsToCountry();
     }, []);
-    return (
-        <>
-            <BackgroundVideo featuredVid={featuredVid} />
-            <h1>GAME WINNER</h1>
-            <h3>{props.winners[0].name}</h3>
-            <CardFlip obj={props.winners[0]} imgClass={"winner"} />
+    if (props.winners[0]) {
+        return (
+            <>
+                <BackgroundVideo featuredVid={featuredVid} />
+                <h1>GAME WINNER</h1>
+                <h3>{props.winners[0].name}</h3>
+                <CardFlip obj={props.winners[0]} imgClass={"winner"} />
 
-            <ul>
-                {props.honorableMentionsList.map((destination) => (
-                    <li>
-                        name: {destination.name} points: {destination.points}
-                    </li>
-                ))}
-            </ul>
-        </>
-    );
+                <ul>
+                    {props.honorableMentionsList.map((destination) => (
+                        <li>
+                            name: {destination.name} points:{" "}
+                            {destination.points}
+                        </li>
+                    ))}
+                </ul>
+            </>
+        );
+    }
 }
 
 export default GameWinner;

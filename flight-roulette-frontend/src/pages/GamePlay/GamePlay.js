@@ -17,6 +17,9 @@ function GamePlay(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!props) {
+            navigate("/setup");
+        }
         console.table(props.finalList);
         // console.table(eliminatedList);
         if (props.finalList.length <= 1) {
@@ -107,6 +110,7 @@ function GamePlay(props) {
     // [2] vietnam <next round
 
     // // round 2
+
     // [0] hawaii (+1)
     // [1] scotland <
     // [2] vietnam (+1)< user votes to keep vietnam. vietnam stays and gets +1 point. scotland eliminated
