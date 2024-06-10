@@ -104,7 +104,7 @@ function GameSetup(props) {
             <>
                 <BackgroundVideo featuredVid={featuredVid} />
                 <div className="center column">
-                    <h1>game setup</h1>
+                    <h1 className="frame__hard-yellow">GAME SETUP</h1>
                     <section className="selection__container">
                         <article className="country">
                             <h1 className="frame__soft-black">

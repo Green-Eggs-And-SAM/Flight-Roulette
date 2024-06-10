@@ -8,8 +8,8 @@
 
 .card {
     background-color: transparent;
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     perspective: 1100px;
 
     &-container {
@@ -51,8 +51,8 @@
     }
     &__img,
     & video {
-        width: 250px;
-        height: 250px;
+        width: 350px;
+        height: 350px;
         object-fit: cover;
         z-index: -10;
         border-radius: 0.8rem;

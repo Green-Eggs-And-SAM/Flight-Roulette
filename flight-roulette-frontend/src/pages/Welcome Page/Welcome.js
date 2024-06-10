@@ -73,11 +73,15 @@ function Welcome() {
 
                     <h3 className={`${!hiddenH2P && "hidden"}`}>
                         PART 1 - SETUP <br /> Populate a list of possible
-                        locations you are interested in visiting.
+                        vacation destinations you are interested in visiting.
                     </h3>
                     <h3 className={`${!hiddenH2P && "hidden"}`}>
-                        PART 2 - PLAY <br /> Narrow down the list of vacations,
-                        one-by-one
+                        PART 2 - PLAY <br /> Play the game to narrow down the
+                        list of vacations. Each round, two destinations will be
+                        presented to you. Simply choose your prefered
+                        destination. The destination you choose will stay in the
+                        game, while the other is eliminated. Repeat until only
+                        one destination, your favorite, remains.
                     </h3>
                 </main>
                 <div className="button__row"></div>

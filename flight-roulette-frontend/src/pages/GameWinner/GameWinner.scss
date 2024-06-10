@@ -1,12 +1,21 @@
 @use "../../styles/variables" as *;
 
 .winner {
-    border: 0.5rem solid $flight-roulette-amber;
+    border: 0.3rem solid $flight-roulette-amber;
 
     &__list {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+    &__title {
+        padding: 0;
+    }
+}
+
+.game-scoreboard {
+    &__subheader {
+        margin-top: 5rem;
     }
 }

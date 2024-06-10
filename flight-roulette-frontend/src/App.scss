@@ -68,6 +68,13 @@ button {
         border-radius: 1rem;
         color: black;
     }
+
+    &__hard-yellow {
+        padding: 1rem;
+        background-color: $flight-roulette-amber;
+        border-radius: 1rem;
+        color: black;
+    }
 }
 
 .no-margin {

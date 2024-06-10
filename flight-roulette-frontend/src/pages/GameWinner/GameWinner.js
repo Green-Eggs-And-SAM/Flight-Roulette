@@ -2,6 +2,7 @@ import "./GameWinner.scss";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
 import CardFlip from "../../components/CardFlip/CardFlip";
 import ScoreboardListItem from "../../components/ScoreboardListItem/ScoreboardListItem";
+import Footer from "../../components/Footer/Footer";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -55,38 +56,54 @@ function GameWinner(props) {
             }
         };
         if (!props.winners[0]) {
-            console.log("here");
-            navigate("/setup");
+            backToSetup();
         }
         console.table(props.honorableMentionsList);
         fetchVideo();
         addPointsToCountry();
     }, []);
+
+    const backToSetup = () => {
+        navigate("/setup");
+    };
+
     if (props.winners[0]) {
         return (
             <>
-                <BackgroundVideo featuredVid={featuredVid} />
-                <h1>GAME WINNER</h1>
-                <h3>{props.winners[0].name}</h3>
-                <CardFlip obj={props.winners[0]} imgClass={"winner"} />
-                <h2>HONORABLE MENTIONS</h2>
-                <ul className="winner__list">
-                    <ScoreboardListItem
-                        name={"City/Country"}
-                        points={"Game Points"}
-                    />
-                    {props.honorableMentionsList.map((destination) => (
+                <div className="column center">
+                    <BackgroundVideo featuredVid={featuredVid} />
+                    <h1 className="frame__hard-yellow ">
+                        GAME WINNER - {props.winners[0].name}
+                    </h1>
+                    <CardFlip obj={props.winners[0]} imgClass={"winner"} />
+                    <h2 className="frame__soft-white game-scoreboard__subheader">
+                        GAME SCOREBOARD
+                    </h2>
+                    <ul className="winner__list">
                         <ScoreboardListItem
-                            name={destination.name}
-                            points={destination.points}
-                            flag={destination.flag}
+                            name={"City/Country"}
+                            points={"Game Points"}
                         />
-                        // <li>
-                        //     name: {destination.name} points:{" "}
-                        //     {destination.points}
-                        // </li>
-                    ))}
-                </ul>
+                        {props.honorableMentionsList.map((destination) => (
+                            <ScoreboardListItem
+                                name={destination.name}
+                                points={destination.points}
+                                flag={destination.flag}
+                            />
+                            // <li>
+                            //     name: {destination.name} points:{" "}
+                            //     {destination.points}
+                            // </li>
+                        ))}
+                    </ul>
+
+                    <button
+                        className="button footer__button"
+                        onClick={backToSetup}
+                    >
+                        PLAY AGAIN
+                    </button>
+                </div>
             </>
         );
     }
