@@ -78,9 +78,14 @@ function GameWinner(props) {
                 className="button footer__button"
                 onClick={toggleLeaderboard}
             >
-                GLOBAL LEADERBOARD
+                {showLeaderboard
+                    ? `BACK TO ${props.winners[0].name}`
+                    : "GLOBAL LEADERBOARD"}
             </button>
-            <button className="button footer__button" onClick={backToSetup}>
+            <button
+                className="button footer__button button-yellow"
+                onClick={backToSetup}
+            >
                 PLAY AGAIN
             </button>
         </div>

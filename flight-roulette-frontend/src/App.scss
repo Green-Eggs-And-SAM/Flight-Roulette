@@ -22,11 +22,20 @@ ul {
 
 button {
     border: 0;
+    background-color: $flight-roulette-blue;
+    color: white;
     &:hover {
-        background-color: $flight-roulette-amber;
+        background-color: $flight-roulette-darkblue;
     }
 }
-
+.button-yellow {
+    border: 0;
+    background-color: $flight-roulette-amber;
+    color: black;
+    &:hover {
+        background-color: $flight-roulette-darkamber;
+    }
+}
 .hidden {
     display: none;
 }
@@ -83,4 +92,8 @@ button {
 
 .no-padding {
     padding: 0;
+}
+
+.margin-II {
+    margin: 2rem;
 }

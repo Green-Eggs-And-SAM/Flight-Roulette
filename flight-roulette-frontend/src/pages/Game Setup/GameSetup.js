@@ -5,11 +5,13 @@ import axios from "axios";
 import featuredVid from "../../assets/videos/earth-video.mp4";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
 import Footer from "../../components/Footer/Footer";
+import Leaderboard from "../../components/Leaderboard/Leaderboard";
 
 function GameSetup(props) {
     const [availableList, setAvailableList] = useState([]);
     const [yourList, setYourList] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showLeaderboard, setShowLeaderboard] = useState(false);
     const baseUrl = "http://localhost:5050";
     const navigate = useNavigate();
     useEffect(() => {
@@ -64,7 +66,7 @@ function GameSetup(props) {
     };
 
     const createFinalList = async () => {
-        if (yourList.length < 1) {
+        if (yourList.length < 4) {
             alert("Please add at least 4 destinations to your list");
             return;
         }
@@ -83,21 +85,44 @@ function GameSetup(props) {
     const navBack = () => {
         navigate("/");
     };
-
+    const toggleLeaderboard = () => {
+        setShowLeaderboard(!showLeaderboard);
+    };
     //================= HTML ====================
     const backButton = (
         <button className="button footer__button" onClick={navBack}>
             BACK
         </button>
     );
+    const leaderboardButton = (
+        <button
+            className="button footer__button center margin-II"
+            onClick={toggleLeaderboard}
+        >
+            {`${showLeaderboard ? "BACK TO SETUP" : "GLOBAL LEADERBOARD"}`}
+        </button>
+    );
     const playButton = (
-        <button className="button footer__button " onClick={createFinalList}>
-            PLAY FLIGHT ROULETTE
+        <button
+            className="button footer__button button-yellow"
+            onClick={createFinalList}
+        >
+            PLAY
         </button>
     );
 
     if (loading) {
         return <h1>LOADING...</h1>;
+    } else if (showLeaderboard) {
+        return (
+            <>
+                <BackgroundVideo featuredVid={featuredVid} />
+
+                <Leaderboard />
+
+                <div className="center">{leaderboardButton}</div>
+            </>
+        );
     } else {
         console.log(availableList.length);
         return (
@@ -164,7 +189,7 @@ function GameSetup(props) {
                                             onClick={() =>
                                                 removeFromYourList(item)
                                             }
-                                            className="setup-button "
+                                            className="setup-button__red "
                                         >
                                             -
                                         </button>
@@ -181,6 +206,7 @@ function GameSetup(props) {
                     </section> */}
                     <Footer
                         leftButton={backButton}
+                        middleButton={leaderboardButton}
                         rightButton={playButton}
                         hide={true}
                     />

@@ -10,6 +10,7 @@ function Footer(props) {
             ></div>
             <footer className="row footer center">
                 {props.leftButton || ``}
+                {props.middleButton || ``}
                 {props.rightButton || ``}
             </footer>
         </>

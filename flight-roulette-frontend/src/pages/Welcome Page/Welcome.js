@@ -19,7 +19,7 @@ function Welcome() {
     );
 
     const startButton = (
-        <button onClick={start} className="button">
+        <button onClick={start} className="button button-yellow">
             Start
         </button>
     );

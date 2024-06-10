@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ScoreboardListItem from "../ScoreboardListItem/ScoreboardListItem";
 import axios from "axios";
+import "./Leaderboard.scss";
 
 function Leaderboard() {
     const [leaderboard, setLeaderboard] = useState([]);
@@ -24,14 +25,17 @@ function Leaderboard() {
         setLoading(true);
         fetchNamesAndFlags();
     }, []);
+
     if (loading) return <h1>LOADING...</h1>;
     return (
-        <div className="column">
-            <h1 className="center frame__hard-yellow">GLOBAL LEADERBOARD</h1>
-            <p className="center frame__soft-black">
+        <div className="column leaderboard__container center">
+            <h1 className="center frame__hard-yellow margin-II">
+                GLOBAL LEADERBOARD
+            </h1>
+            <h4 className="center frame__soft-black">
                 Here are the total scores added up from every user around the
                 world
-            </p>
+            </h4>
             <ScoreboardListItem
                 name={"City/Country"}
                 points={"Global Points Total"}
