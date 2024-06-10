@@ -8,8 +8,8 @@
 
 .card {
     background-color: transparent;
-    width: 400px;
-    height: 400px;
+    width: 250px;
+    height: 250px;
     perspective: 1100px;
 
     &-container {
@@ -19,7 +19,7 @@
         text-align: center;
         transition: transform 0.3s;
         transform-style: preserve-3d;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 10 -10px 10px 0 rgba(0, 0, 0, 0.5);
     }
 
     &:hover &-container {
@@ -51,8 +51,8 @@
     }
     &__img,
     & video {
-        width: 400px;
-        height: 400px;
+        width: 250px;
+        height: 250px;
         object-fit: cover;
         z-index: -10;
         border-radius: 0.8rem;

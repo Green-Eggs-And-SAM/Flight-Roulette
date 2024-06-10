@@ -5,19 +5,34 @@
     // top: 0;
 
     // right: 0;
+    // width: 100vw;
+    // height: 100vh;
+    // object-fit: cover;
+
     width: 100vw;
-    object-fit: cover;
-    background-color: black;
+    transform: translate(-50%, -50%);
+}
+
+.width-fit {
+    width: 100vw;
 }
 
 .video-container {
     min-width: 100%;
     min-height: 100%;
-    background-color: black;
+    // object-fit: cover;
+
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
     z-index: -1;
-    background-color: black;
 }
+
+// .video-center {
+//     transform: translate(-50%, -50%);
+// }
+
+// .video-shift-down {
+//     transform: translate(-50%, -35%);
+// }

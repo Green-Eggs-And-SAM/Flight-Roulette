@@ -3,11 +3,11 @@ import "./Footer.scss";
 function Footer(props) {
     return (
         <>
-            <div
+            {/* <div
                 className={`${
                     props.hide && `hidden`
                 } footer__xtra-page-padding`}
-            ></div>
+            ></div> */}
             <footer className="row footer center">
                 {props.leftButton || ``}
                 {props.rightButton || ``}

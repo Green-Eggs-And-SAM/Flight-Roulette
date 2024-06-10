@@ -4,13 +4,15 @@ function BackgroundVideo(props) {
     // console.log(props);
     if (props.featuredVid) {
         return (
-            <div className="video-container">
+            <div className={`video-container `}>
                 <video
                     src={props.featuredVid}
                     autoPlay
                     muted
                     loop
-                    className="videoPos "
+                    className={`videoPos 
+
+                    `}
                     typeof="video/mp4"
                 >
                     Your browser does not support HTML5 video.

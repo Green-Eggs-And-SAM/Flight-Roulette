@@ -32,7 +32,11 @@ function Welcome() {
     }
     return (
         <>
-            <BackgroundVideo featuredVid={featuredVid} />
+            <BackgroundVideo
+                featuredVid={featuredVid}
+                widthfit={true}
+                center={true}
+            />
             <main className="main-container">
                 <header className="welcome">
                     <div className="column center">

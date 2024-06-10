@@ -1,6 +1,7 @@
 import "./GameWinner.scss";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
 import CardFlip from "../../components/CardFlip/CardFlip";
+import ScoreboardListItem from "../../components/ScoreboardListItem/ScoreboardListItem";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -28,15 +29,6 @@ function GameWinner(props) {
             if (onlyRunOnce == false) return;
             else onlyRunOnce = false; //fix a bug where points are added more than once on load.
             try {
-                // const data = {
-                //     method: "POST",
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //     },
-                //     body: JSON.stringify({
-                //         pointsToAdd: parseInt(country.points),
-                //     }),
-                // };
                 const data = [];
                 console.table(props.honorableMentionsList);
                 const winnerBonus = 2;
@@ -66,6 +58,7 @@ function GameWinner(props) {
             console.log("here");
             navigate("/setup");
         }
+        console.table(props.honorableMentionsList);
         fetchVideo();
         addPointsToCountry();
     }, []);
@@ -76,13 +69,22 @@ function GameWinner(props) {
                 <h1>GAME WINNER</h1>
                 <h3>{props.winners[0].name}</h3>
                 <CardFlip obj={props.winners[0]} imgClass={"winner"} />
-
-                <ul>
+                <h2>HONORABLE MENTIONS</h2>
+                <ul className="winner__list">
+                    <ScoreboardListItem
+                        name={"City/Country"}
+                        points={"Game Points"}
+                    />
                     {props.honorableMentionsList.map((destination) => (
-                        <li>
-                            name: {destination.name} points:{" "}
-                            {destination.points}
-                        </li>
+                        <ScoreboardListItem
+                            name={destination.name}
+                            points={destination.points}
+                            flag={destination.flag}
+                        />
+                        // <li>
+                        //     name: {destination.name} points:{" "}
+                        //     {destination.points}
+                        // </li>
                     ))}
                 </ul>
             </>
