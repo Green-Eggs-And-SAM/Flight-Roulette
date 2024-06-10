@@ -3,6 +3,7 @@ import BackgroundVideo from "../Background Video/BackgroundVideo";
 import CardFlip from "../../components/CardFlip/CardFlip";
 import ScoreboardListItem from "../../components/ScoreboardListItem/ScoreboardListItem";
 import Footer from "../../components/Footer/Footer";
+import Leaderboard from "../../components/Leaderboard/Leaderboard.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -10,6 +11,7 @@ import axios from "axios";
 function GameWinner(props) {
     const baseUrl = "http://localhost:5050";
     const [featuredVid, setFeaturedVid] = useState();
+    const [showLeaderboard, setShowLeaderboard] = useState(false);
     let onlyRunOnce = true;
     const navigate = useNavigate();
     useEffect(() => {
@@ -63,11 +65,37 @@ function GameWinner(props) {
         addPointsToCountry();
     }, []);
 
+    const toggleLeaderboard = () => {
+        setShowLeaderboard(!showLeaderboard);
+    };
     const backToSetup = () => {
         navigate("/setup");
     };
 
-    if (props.winners[0]) {
+    const navButtons = (
+        <div className="row game-scoreboard__bottom-space center">
+            <button
+                className="button footer__button"
+                onClick={toggleLeaderboard}
+            >
+                GLOBAL LEADERBOARD
+            </button>
+            <button className="button footer__button" onClick={backToSetup}>
+                PLAY AGAIN
+            </button>
+        </div>
+    );
+
+    if (showLeaderboard) {
+        return (
+            <>
+                <BackgroundVideo featuredVid={featuredVid} />
+
+                <Leaderboard />
+                {navButtons}
+            </>
+        );
+    } else if (props.winners[0]) {
         return (
             <>
                 <div className="column center">
@@ -90,19 +118,9 @@ function GameWinner(props) {
                                 points={destination.points}
                                 flag={destination.flag}
                             />
-                            // <li>
-                            //     name: {destination.name} points:{" "}
-                            //     {destination.points}
-                            // </li>
                         ))}
                     </ul>
-
-                    <button
-                        className="button footer__button"
-                        onClick={backToSetup}
-                    >
-                        PLAY AGAIN
-                    </button>
+                    {navButtons}
                 </div>
             </>
         );
