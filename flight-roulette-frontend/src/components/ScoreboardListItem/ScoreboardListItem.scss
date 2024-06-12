@@ -12,10 +12,17 @@
         width: 6rem;
     }
     &__points {
-        width: 14rem;
+        width: 12rem;
     }
     &__hotel {
-        width: 10rem;
+        width: 12rem;
+        & a {
+            color: white;
+        }
+    }
+
+    &__activity {
+        width: 12rem;
         & a {
             color: white;
         }

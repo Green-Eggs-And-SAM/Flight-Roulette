@@ -10,8 +10,17 @@ function ScoreboardListItem(props) {
             Hotels in {props.name}
         </a>
     );
+    const linkToActivities = (
+        <a
+            href={`https://www.tripadvisor.ca/Search?q=${props.name}&geo=1&ssrc=a&searchNearby=false`}
+            target="_blank"
+        >
+            Activities in {props.name}
+        </a>
+    );
 
     const hotelCategory = <p>Hotels</p>;
+    const activityCategory = <p>Things To Do</p>;
     return (
         <>
             <li className="score-list-item frame__soft-black">
@@ -32,6 +41,9 @@ function ScoreboardListItem(props) {
                 </div>
                 <div className="score-list-item__hotel">
                     {props.flag ? linkToHotel : hotelCategory}
+                </div>
+                <div className="score-list-item__activity">
+                    {props.flag ? linkToActivities : activityCategory}
                 </div>
             </li>
         </>

@@ -21,14 +21,13 @@ function CardFlip(props) {
                             >
                                 Hotels in {props.obj.name}{" "}
                             </a>
-                            {/* <button
-                                className={`button ${
-                                    props.vote ? "" : "hidden"
-                                }`}
-                                onClick={props.vote}
+                            <br />
+                            <a
+                                href={`https://www.tripadvisor.ca/Search?q=${props.obj.name}&geo=1&ssrc=a&searchNearby=false`}
+                                target="_blank"
                             >
-                                Vote
-                            </button> */}
+                                Activities in {props.obj.name}
+                            </a>
                         </div>
                     </div>
                 </article>
