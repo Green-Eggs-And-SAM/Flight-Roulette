@@ -47,6 +47,7 @@ function Leaderboard() {
                     flag={destination.flag}
                 />
             ))}
+            <br />
         </div>
     );
 }

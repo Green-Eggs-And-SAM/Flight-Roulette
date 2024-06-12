@@ -3,6 +3,7 @@ import BackgroundVideo from "../Background Video/BackgroundVideo";
 import CardFlip from "../../components/CardFlip/CardFlip";
 import ScoreboardListItem from "../../components/ScoreboardListItem/ScoreboardListItem";
 import Footer from "../../components/Footer/Footer";
+import Credit from "../../components/Credit/Credit.js";
 import Leaderboard from "../../components/Leaderboard/Leaderboard.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -98,6 +99,7 @@ function GameWinner(props) {
 
                 <Leaderboard />
                 {navButtons}
+                <Credit />
             </>
         );
     } else if (props.winners[0]) {
@@ -126,6 +128,7 @@ function GameWinner(props) {
                         ))}
                     </ul>
                     {navButtons}
+                    <Credit />
                 </div>
             </>
         );

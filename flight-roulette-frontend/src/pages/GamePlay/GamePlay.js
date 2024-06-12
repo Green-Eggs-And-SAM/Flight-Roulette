@@ -145,13 +145,13 @@ function GamePlay(props) {
                 >
                     <Card obj={props.finalList[leftIndex]} vote={leftVote} />
                 </div>
-                <p
+                <h2
                     className={`frame__soft-black
                 ${voteStatus !== "" ? "fade-out" : ""}
                 `}
                 >
                     OR
-                </p>
+                </h2>
                 <div
                     className={`column center fade-out-container ${
                         voteStatus === "l" ? "fade-out" : ""

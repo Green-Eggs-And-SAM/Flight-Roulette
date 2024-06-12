@@ -1,0 +1,19 @@
+.credit {
+    &__container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__img-container {
+        display: flex;
+        flex-direction: row;
+    }
+    &__icon {
+        height: 2rem;
+        margin: 0.5rem;
+    }
+    &__subheader {
+        color: white;
+        font-weight: bold;
+    }
+}
