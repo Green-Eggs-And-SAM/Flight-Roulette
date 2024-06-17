@@ -18,7 +18,7 @@ function GameWinner(props) {
     useEffect(() => {
         const fetchVideo = async () => {
             try {
-                const targetURL = `${baseUrl}/destinations/${props.winners[0].name}/video`;
+                const targetURL = `${baseUrl}/destinations/${props.winner.name}/video`;
                 console.log(targetURL);
                 const response = await axios.get(targetURL);
                 const data = response.data;
@@ -37,8 +37,8 @@ function GameWinner(props) {
                 console.table(props.honorableMentionsList);
                 const winnerBonus = 2;
                 data.push({
-                    name: props.winners[0].name,
-                    newPoint: props.winners[0].points + winnerBonus,
+                    name: props.winner.name,
+                    newPoint: props.winner.points + winnerBonus,
                 });
                 for (let i = 0; i < props.honorableMentionsList.length; i++) {
                     if (props.honorableMentionsList[i].points < 1) continue; //skip if no points to add.
@@ -58,7 +58,7 @@ function GameWinner(props) {
                 console.log(error);
             }
         };
-        if (!props.winners[0]) {
+        if (!props.winner) {
             backToSetup();
         }
         console.table(props.honorableMentionsList);
@@ -80,7 +80,7 @@ function GameWinner(props) {
                 onClick={toggleLeaderboard}
             >
                 {showLeaderboard
-                    ? `BACK TO ${props.winners[0].name}`
+                    ? `BACK TO ${props.winner.name}`
                     : "GLOBAL LEADERBOARD"}
             </button>
             <button
@@ -102,15 +102,15 @@ function GameWinner(props) {
                 <Credit />
             </>
         );
-    } else if (props.winners[0]) {
+    } else if (props.winner) {
         return (
             <>
                 <div className="column center">
                     <BackgroundVideo featuredVid={featuredVid} />
                     <h1 className="frame__hard-yellow ">
-                        GAME WINNER - {props.winners[0].name}
+                        GAME WINNER - {props.winner.name}
                     </h1>
-                    <CardFlip obj={props.winners[0]} imgClass={"winner"} />
+                    <CardFlip obj={props.winner} imgClass={"winner"} />
                     <h2 className="frame__soft-white game-scoreboard__subheader">
                         GAME SCOREBOARD
                     </h2>

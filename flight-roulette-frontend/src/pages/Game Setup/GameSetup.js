@@ -22,6 +22,7 @@ function GameSetup(props) {
                 // console.log(targetURL);
                 const response = await axios.get(targetURL);
                 const data = response.data;
+                shuffleList(data);
                 setAvailableList(data);
                 setLoading(false);
             } catch (error) {
@@ -33,6 +34,19 @@ function GameSetup(props) {
     }, []);
 
     //============= array manipulation ================
+    //shuffle the list
+    function shuffleList(data) {
+        const len = data.length;
+        for (let i = 0; i < len; i++) {
+            const randomIndex = Math.floor(Math.random() * len);
+            //swap
+            if (randomIndex != i) {
+                let temp = data[i];
+                data[i] = data[randomIndex];
+                data[randomIndex] = temp;
+            }
+        }
+    }
     function deleteItemFromArray(itemToDelete, array) {
         const foundIndex = array.findIndex((item) => item == itemToDelete);
         const updatedList = [
@@ -112,7 +126,14 @@ function GameSetup(props) {
     );
 
     if (loading) {
-        return <h1>LOADING...</h1>;
+        return (
+            <>
+                <BackgroundVideo featuredVid={featuredVid} />
+                <h1 className="center frame__soft-black">
+                    LOADING DESTINATIONS...
+                </h1>
+            </>
+        );
     } else if (showLeaderboard) {
         return (
             <>

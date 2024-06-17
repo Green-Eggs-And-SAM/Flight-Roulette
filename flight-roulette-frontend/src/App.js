@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 function App() {
     const [finalList, setFinalList] = useState([]);
-    const [winners, setWinners] = useState([]);
+    const [winner, setWinner] = useState();
     const [honorableMentionsList, setHonorableMentionsList] = useState([]);
     // useEffect(() => {
     //     console.log(finalList);
@@ -42,7 +42,7 @@ function App() {
                                 <GamePlay
                                     finalList={finalList}
                                     deleteItemFromList={deleteItemFromList}
-                                    setWinners={setWinners}
+                                    setWinner={setWinner}
                                     setHonorableMentionsList={
                                         setHonorableMentionsList
                                     }
@@ -54,7 +54,7 @@ function App() {
                             path="/winner"
                             element={
                                 <GameWinner
-                                    winners={winners}
+                                    winner={winner}
                                     honorableMentionsList={
                                         honorableMentionsList
                                     }
