@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 function CardFlip(props) {
     const [photoIndex, setPhotoIndex] = useState(0);
-    const interval = 3000;
+    const interval = 3500;
     useEffect(() => {
         const repeat = setInterval(() => {
             // next photo

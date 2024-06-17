@@ -7,18 +7,27 @@ import Credit from "../../components/Credit/Credit.js";
 import Leaderboard from "../../components/Leaderboard/Leaderboard.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { browserHistory } from "react-router";
 import axios from "axios";
 
 function GameWinner() {
+    const navigate = useNavigate();
+    const backToSetup = () => {
+        navigate("/setup");
+        return;
+    };
     const baseUrl = "http://localhost:5050";
     const [featuredVid, setFeaturedVid] = useState();
     const [showLeaderboard, setShowLeaderboard] = useState(false);
-    const winner = JSON.parse(sessionStorage.getItem("winner"));
-    const honorableMentionsList = JSON.parse(
-        sessionStorage.getItem("honorableMentions")
-    );
-
-    const navigate = useNavigate();
+    try {
+        var winner = JSON.parse(sessionStorage.getItem("winner"));
+        var honorableMentionsList = JSON.parse(
+            sessionStorage.getItem("honorableMentions")
+        );
+    } catch (error) {
+        console.log(error);
+        backToSetup();
+    }
     useEffect(() => {
         const fetchVideo = async () => {
             try {
@@ -60,19 +69,31 @@ function GameWinner() {
                 console.log(error);
             }
         };
+
+        const handleBackButton = () => {
+            console.log("User pressed the browser back button");
+            backToSetup();
+            // Perform any other actions you want when the back button is pressed
+        };
+
+        // Add event listener when component mounts
+        window.addEventListener("popstate", handleBackButton);
+
+        // Clean up the event listener when component unmounts
+
         if (!winner) {
             backToSetup();
         }
 
         fetchVideo();
         addPointsToCountry();
+        return () => {
+            window.removeEventListener("popstate", handleBackButton);
+        };
     }, []);
 
     const toggleLeaderboard = () => {
         setShowLeaderboard(!showLeaderboard);
-    };
-    const backToSetup = () => {
-        navigate("/setup");
     };
 
     const navButtons = (

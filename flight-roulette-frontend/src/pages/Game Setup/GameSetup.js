@@ -226,6 +226,7 @@ function GameSetup(props) {
                             PLAY FLIGHT ROULETTE
                         </button>
                     </section> */}
+                    <div className="footer-padding"></div>
                     <Footer
                         leftButton={backButton}
                         middleButton={leaderboardButton}
