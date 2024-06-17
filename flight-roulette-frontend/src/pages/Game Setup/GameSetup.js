@@ -172,8 +172,8 @@ function GameSetup(props) {
                                                 : `hidden `
                                         }`}
                                     >
-                                        Add any countries you are interested in
-                                        visiting.
+                                        Add all cities/countries you are
+                                        interested in visiting.
                                     </p>
                                 </li>
                                 {yourList.map((item) => (

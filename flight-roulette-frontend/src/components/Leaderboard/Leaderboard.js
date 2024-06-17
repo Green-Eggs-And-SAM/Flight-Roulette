@@ -8,6 +8,7 @@ function Leaderboard() {
     const [loading, setLoading] = useState(true);
     const baseUrl = "http://localhost:5050";
     useEffect(() => {
+        //fetch an array of objects. Each object contains a flag image, a country name and a score.
         const fetchNamesAndFlags = async () => {
             try {
                 const targetURL = `${baseUrl}/destinations/names-flags-list`;

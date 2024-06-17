@@ -23,10 +23,17 @@ function CardFlip(props) {
                             </a>
                             <br />
                             <a
-                                href={`https://www.tripadvisor.ca/Search?q=${props.obj.name}&geo=1&ssrc=a&searchNearby=false`}
+                                href={`https://www.tripadvisor.ca/Search?q=${props.obj.name}&geo=1&ssrc=A&searchNearby=false`}
                                 target="_blank"
                             >
                                 Activities in {props.obj.name}
+                            </a>
+                            <br />
+                            <a
+                                href={`https://www.tripadvisor.ca/Search?q=${props.obj.name}&geo=1&ssrc=e&searchNearby=false`}
+                                target="_blank"
+                            >
+                                Restaurants in {props.obj.name}
                             </a>
                         </div>
                     </div>

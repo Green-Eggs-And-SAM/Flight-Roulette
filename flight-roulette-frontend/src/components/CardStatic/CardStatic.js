@@ -4,10 +4,8 @@ import { useState, useEffect } from "react";
 function CardStatic(props) {
     const [photoIndex, setPhotoIndex] = useState(0);
 
-    const interval = 2000;
-    // console.table(props.obj);
+    const interval = 2500;
     useEffect(() => {
-        // if (props.offset) {
         const repeat = setInterval(() => {
             // next photo
             setPhotoIndex(

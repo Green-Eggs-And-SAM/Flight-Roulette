@@ -21,7 +21,7 @@ function GamePlay(props) {
             navigate("/setup");
         }
         console.table(props.finalList);
-        // console.table(eliminatedList);
+
         if (props.finalList.length <= 1) {
             // end of game. this is the winning vote
             props.setWinners(props.finalList); //winner is last remaining item.
