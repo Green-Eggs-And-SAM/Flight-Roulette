@@ -8,8 +8,7 @@ import { useEffect, useState } from "react";
 
 function App() {
     const [finalList, setFinalList] = useState([]);
-    const [winner, setWinner] = useState();
-    const [honorableMentionsList, setHonorableMentionsList] = useState([]);
+
     // useEffect(() => {
     //     console.log(finalList);
     // }, [finalList]);
@@ -42,25 +41,11 @@ function App() {
                                 <GamePlay
                                     finalList={finalList}
                                     deleteItemFromList={deleteItemFromList}
-                                    setWinner={setWinner}
-                                    setHonorableMentionsList={
-                                        setHonorableMentionsList
-                                    }
                                 />
                             }
                         />
 
-                        <Route
-                            path="/winner"
-                            element={
-                                <GameWinner
-                                    winner={winner}
-                                    honorableMentionsList={
-                                        honorableMentionsList
-                                    }
-                                />
-                            }
-                        />
+                        <Route path="/winner" element={<GameWinner />} />
                     </Routes>
                 </BrowserRouter>
             </main>

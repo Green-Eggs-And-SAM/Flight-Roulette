@@ -1,6 +1,19 @@
 import "./CardFlip.scss";
+import { useState, useEffect } from "react";
 
 function CardFlip(props) {
+    const [photoIndex, setPhotoIndex] = useState(0);
+    const interval = 3000;
+    useEffect(() => {
+        const repeat = setInterval(() => {
+            // next photo
+            setPhotoIndex(
+                (prevIndex) => (prevIndex + 1) % props.obj.landscape.length
+            );
+        }, interval);
+
+        return () => clearInterval(repeat);
+    }, []);
     if (props.obj) {
         return (
             <>
@@ -8,7 +21,7 @@ function CardFlip(props) {
                     <div className="card-container">
                         <div className="card-front">
                             <img
-                                src={props.obj.landscape[0]}
+                                src={props.obj.landscape[photoIndex]}
                                 className={`${props.imgClass} card__img`}
                             />
                         </div>

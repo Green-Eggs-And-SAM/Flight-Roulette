@@ -16,7 +16,7 @@ function Leaderboard() {
                 const response = await axios.get(targetURL);
                 const data = response.data;
                 data.sort((a, b) => b.points - a.points);
-                console.table(data);
+
                 setLeaderboard(data);
                 setLoading(false);
             } catch (error) {

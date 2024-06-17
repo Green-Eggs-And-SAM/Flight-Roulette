@@ -24,10 +24,17 @@ function GamePlay(props) {
 
         if (props.finalList.length <= 1) {
             // end of game. this is the winning vote
-            props.setWinner(props.finalList[0]); //winner is last remaining item.
+            sessionStorage.setItem(
+                "winner",
+                JSON.stringify(props.finalList[0])
+            ); //winner is last remaining item.
             //sort losers
             eliminatedList.sort((a, b) => b.points - a.points);
-            props.setHonorableMentionsList(eliminatedList);
+
+            sessionStorage.setItem(
+                "honorableMentions",
+                JSON.stringify(eliminatedList)
+            );
             navigate("/winner");
         } else if (voteStatus !== "") {
             startNextRound();
@@ -78,8 +85,6 @@ function GamePlay(props) {
     };
 
     const startNextRound = async () => {
-        console.log("props.finalList", props.finalList);
-        // await wait(500);
         const nextRound = round + 1;
         setRound(nextRound);
         let nextIndex = leftIndex + 1;

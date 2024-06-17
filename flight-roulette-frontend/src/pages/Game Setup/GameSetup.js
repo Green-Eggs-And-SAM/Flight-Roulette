@@ -93,6 +93,7 @@ function GameSetup(props) {
         }
         console.log(final);
         props.gameReady(final);
+        sessionStorage.clear();
         navigate("/play");
     };
 

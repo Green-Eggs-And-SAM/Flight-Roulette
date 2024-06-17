@@ -1,7 +1,6 @@
 import "./ScoreboardListItem.scss";
 
 function ScoreboardListItem(props) {
-    console.log(props);
     const linkToHotel = (
         <a
             href={`https://www.expedia.ca/Hotel-Search?destination=${props.name}`}

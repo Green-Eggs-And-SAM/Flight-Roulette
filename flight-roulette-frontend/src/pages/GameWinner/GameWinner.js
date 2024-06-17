@@ -9,16 +9,20 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function GameWinner(props) {
+function GameWinner() {
     const baseUrl = "http://localhost:5050";
     const [featuredVid, setFeaturedVid] = useState();
     const [showLeaderboard, setShowLeaderboard] = useState(false);
-    let onlyRunOnce = true;
+    const winner = JSON.parse(sessionStorage.getItem("winner"));
+    const honorableMentionsList = JSON.parse(
+        sessionStorage.getItem("honorableMentions")
+    );
+
     const navigate = useNavigate();
     useEffect(() => {
         const fetchVideo = async () => {
             try {
-                const targetURL = `${baseUrl}/destinations/${props.winner.name}/video`;
+                const targetURL = `${baseUrl}/destinations/${winner.name}/video`;
                 console.log(targetURL);
                 const response = await axios.get(targetURL);
                 const data = response.data;
@@ -30,21 +34,21 @@ function GameWinner(props) {
         };
 
         const addPointsToCountry = async () => {
-            if (onlyRunOnce == false) return;
-            else onlyRunOnce = false; //fix a bug where points are added more than once on load.
+            if (sessionStorage.getItem("onlyRunOnce") == "1") return;
+            else sessionStorage.setItem("onlyRunOnce", "1"); //fix a bug where points are added more than once on load.
             try {
                 const data = [];
-                console.table(props.honorableMentionsList);
+                console.table(honorableMentionsList);
                 const winnerBonus = 2;
                 data.push({
-                    name: props.winner.name,
-                    newPoint: props.winner.points + winnerBonus,
+                    name: winner.name,
+                    newPoint: winner.points + winnerBonus,
                 });
-                for (let i = 0; i < props.honorableMentionsList.length; i++) {
-                    if (props.honorableMentionsList[i].points < 1) continue; //skip if no points to add.
+                for (let i = 0; i < honorableMentionsList.length; i++) {
+                    if (honorableMentionsList[i].points < 1) continue; //skip if no points to add.
                     const obj = {
-                        name: props.honorableMentionsList[i].name,
-                        newPoint: props.honorableMentionsList[i].points,
+                        name: honorableMentionsList[i].name,
+                        newPoint: honorableMentionsList[i].points,
                     };
                     data.push(obj);
                 }
@@ -52,16 +56,14 @@ function GameWinner(props) {
                 const targetURL = `${baseUrl}/destinations/add-points`;
 
                 await axios.put(targetURL, data);
-
-                // console.log(data);
             } catch (error) {
                 console.log(error);
             }
         };
-        if (!props.winner) {
+        if (!winner) {
             backToSetup();
         }
-        console.table(props.honorableMentionsList);
+
         fetchVideo();
         addPointsToCountry();
     }, []);
@@ -80,7 +82,7 @@ function GameWinner(props) {
                 onClick={toggleLeaderboard}
             >
                 {showLeaderboard
-                    ? `BACK TO ${props.winner.name}`
+                    ? `BACK TO ${winner.name}`
                     : "GLOBAL LEADERBOARD"}
             </button>
             <button
@@ -102,15 +104,15 @@ function GameWinner(props) {
                 <Credit />
             </>
         );
-    } else if (props.winner) {
+    } else if (winner) {
         return (
             <>
                 <div className="column center">
                     <BackgroundVideo featuredVid={featuredVid} />
                     <h1 className="frame__hard-yellow ">
-                        GAME WINNER - {props.winner.name}
+                        GAME WINNER - {winner.name}
                     </h1>
-                    <CardFlip obj={props.winner} imgClass={"winner"} />
+                    <CardFlip obj={winner} imgClass={"winner"} />
                     <h2 className="frame__soft-white game-scoreboard__subheader">
                         GAME SCOREBOARD
                     </h2>
@@ -119,7 +121,7 @@ function GameWinner(props) {
                             name={"City/Country"}
                             points={"Game Points"}
                         />
-                        {props.honorableMentionsList.map((destination) => (
+                        {honorableMentionsList.map((destination) => (
                             <ScoreboardListItem
                                 name={destination.name}
                                 points={destination.points}
