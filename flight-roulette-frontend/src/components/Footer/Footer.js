@@ -3,6 +3,7 @@ import "./Footer.scss";
 function Footer(props) {
     return (
         <>
+            <div className="footer-padding"></div>
             <div
                 className={`${
                     props.hide && `hidden`

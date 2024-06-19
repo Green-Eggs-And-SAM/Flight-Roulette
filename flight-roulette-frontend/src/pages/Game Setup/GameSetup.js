@@ -139,9 +139,7 @@ function GameSetup(props) {
         return (
             <>
                 <BackgroundVideo featuredVid={featuredVid} />
-
                 <Leaderboard />
-
                 <div className="center">{leaderboardButton}</div>
             </>
         );
@@ -220,13 +218,7 @@ function GameSetup(props) {
                             </ul>
                         </article>
                     </section>
-                    {/* <section className="row">
-                        <button className="button">BACK</button>
-                        <button className="button " onClick={createFinalList}>
-                            PLAY FLIGHT ROULETTE
-                        </button>
-                    </section> */}
-                    <div className="footer-padding"></div>
+
                     <Footer
                         leftButton={backButton}
                         middleButton={leaderboardButton}

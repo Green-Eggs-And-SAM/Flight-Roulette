@@ -24,6 +24,8 @@ function GameWinner() {
         var honorableMentionsList = JSON.parse(
             sessionStorage.getItem("honorableMentions")
         );
+        console.log(winner);
+        console.log();
     } catch (error) {
         console.log(error);
         backToSetup();
@@ -96,23 +98,19 @@ function GameWinner() {
         setShowLeaderboard(!showLeaderboard);
     };
 
-    const navButtons = (
-        <div className="row game-scoreboard__bottom-space center">
-            <button
-                className="button footer__button"
-                onClick={toggleLeaderboard}
-            >
-                {showLeaderboard
-                    ? `BACK TO ${winner.name}`
-                    : "GLOBAL LEADERBOARD"}
-            </button>
-            <button
-                className="button footer__button button-yellow"
-                onClick={backToSetup}
-            >
-                PLAY AGAIN
-            </button>
-        </div>
+    const globalLeaderboard = (
+        <button className="button footer__button" onClick={toggleLeaderboard}>
+            {showLeaderboard ? `BACK TO ${winner.name}` : "GLOBAL LEADERBOARD"}
+        </button>
+    );
+
+    const setupButton = (
+        <button
+            className="button footer__button button-yellow"
+            onClick={backToSetup}
+        >
+            PLAY AGAIN
+        </button>
     );
 
     if (showLeaderboard) {
@@ -121,8 +119,12 @@ function GameWinner() {
                 <BackgroundVideo featuredVid={featuredVid} />
 
                 <Leaderboard />
-                {navButtons}
+
                 <Credit />
+                <Footer
+                    leftButton={globalLeaderboard}
+                    rightButton={setupButton}
+                />
             </>
         );
     } else if (winner) {
@@ -150,8 +152,12 @@ function GameWinner() {
                             />
                         ))}
                     </ul>
-                    {navButtons}
+
                     <Credit />
+                    <Footer
+                        leftButton={globalLeaderboard}
+                        rightButton={setupButton}
+                    />
                 </div>
             </>
         );

@@ -5,12 +5,20 @@ function CardStatic(props) {
     const [photoIndex, setPhotoIndex] = useState(0);
 
     const interval = 2500;
+
+    //alternate between left and right photos.
+    var alternate = false;
+    if (props.offset) alternate = !alternate;
+
     useEffect(() => {
         const repeat = setInterval(() => {
             // next photo
-            setPhotoIndex(
-                (prevIndex) => (prevIndex + 1) % props.obj.landscape.length
-            );
+            if (alternate) {
+                setPhotoIndex(
+                    (prevIndex) => (prevIndex + 1) % props.obj.landscape.length
+                );
+            }
+            alternate = !alternate;
         }, interval);
 
         return () => clearInterval(repeat);

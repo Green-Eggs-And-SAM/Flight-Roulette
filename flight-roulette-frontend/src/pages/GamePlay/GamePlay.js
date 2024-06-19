@@ -4,6 +4,8 @@ import Card from "../../components/CardStatic/CardStatic";
 import EarthLoop from "../../assets/videos/earth-loop.mp4";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
 import "./GamePlay.scss";
+import ProgressBar from "@atlaskit/progress-bar";
+import Footer from "../../components/Footer/Footer";
 
 function GamePlay(props) {
     const [eliminatedList, setEliminatedList] = useState([]);
@@ -24,18 +26,26 @@ function GamePlay(props) {
 
         if (props.finalList.length <= 1) {
             // end of game. this is the winning vote
-            sessionStorage.setItem(
-                "winner",
-                JSON.stringify(props.finalList[0])
-            ); //winner is last remaining item.
-            //sort losers
-            eliminatedList.sort((a, b) => b.points - a.points);
+            if (
+                sessionStorage["winner"] ||
+                sessionStorage["honorableMentions"]
+            ) {
+                navigate("/winner");
+                return;
+            } else {
+                sessionStorage.setItem(
+                    "winner",
+                    JSON.stringify(props.finalList[0])
+                ); //winner is last remaining item.
+                //sort losers
+                eliminatedList.sort((a, b) => b.points - a.points);
 
-            sessionStorage.setItem(
-                "honorableMentions",
-                JSON.stringify(eliminatedList)
-            );
-            navigate("/winner");
+                sessionStorage.setItem(
+                    "honorableMentions",
+                    JSON.stringify(eliminatedList)
+                );
+                navigate("/winner");
+            }
         } else if (voteStatus !== "") {
             startNextRound();
         }
@@ -137,6 +147,10 @@ function GamePlay(props) {
                 <p>
                     Round {round} of {totalRounds}
                 </p>
+
+                <ProgressBar value={round / totalRounds} />
+
+                <br />
             </header>
             <div
                 className={`choice__container center hide-container ${
