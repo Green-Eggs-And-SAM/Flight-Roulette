@@ -45,6 +45,7 @@ function GamePlay(props) {
                     JSON.stringify(eliminatedList)
                 );
                 navigate("/winner");
+                return;
             }
         } else if (voteStatus !== "") {
             startNextRound();

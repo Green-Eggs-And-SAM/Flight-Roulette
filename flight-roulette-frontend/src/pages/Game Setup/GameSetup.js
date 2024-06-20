@@ -91,7 +91,7 @@ function GameSetup(props) {
             obj.points = 0;
             final = [...final, obj];
         }
-        console.log(final);
+        console.table(final);
         props.gameReady(final);
         sessionStorage.clear();
         navigate("/play");
