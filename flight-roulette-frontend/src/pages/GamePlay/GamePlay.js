@@ -5,7 +5,6 @@ import EarthLoop from "../../assets/videos/earth-loop.mp4";
 import BackgroundVideo from "../Background Video/BackgroundVideo";
 import "./GamePlay.scss";
 import ProgressBar from "@atlaskit/progress-bar";
-import Footer from "../../components/Footer/Footer";
 
 function GamePlay(props) {
     const [eliminatedList, setEliminatedList] = useState([]);
@@ -15,16 +14,17 @@ function GamePlay(props) {
     //increment left index + 1 on each round.
     const [voteStatus, setVoteStatus] = useState("");
     const [cardsHidden, setHidden] = useState(false);
-
+    const [list, setList] = useState(
+        JSON.parse(sessionStorage.getItem("list"))
+    );
     const navigate = useNavigate();
 
     useEffect(() => {
         if (!props) {
             navigate("/setup");
         }
-        console.table(props.finalList);
 
-        if (props.finalList.length <= 1) {
+        if (list.length <= 1) {
             // end of game. this is the winning vote
             if (
                 sessionStorage["winner"] ||
@@ -33,10 +33,7 @@ function GamePlay(props) {
                 navigate("/winner");
                 return;
             } else {
-                sessionStorage.setItem(
-                    "winner",
-                    JSON.stringify(props.finalList[0])
-                ); //winner is last remaining item.
+                sessionStorage.setItem("winner", JSON.stringify(list[0])); //winner is last remaining item.
                 //sort losers
                 eliminatedList.sort((a, b) => b.points - a.points);
 
@@ -50,10 +47,10 @@ function GamePlay(props) {
         } else if (voteStatus !== "") {
             startNextRound();
         }
-    }, [props.finalList]);
+    }, [list]);
 
     useEffect(() => {
-        setTotalRounds(props.finalList.length - 1);
+        setTotalRounds(list.length - 1);
     }, []);
 
     //if voted for left, then delete right
@@ -61,7 +58,7 @@ function GamePlay(props) {
         setVoteStatus("l");
         const cardIndexWinner = leftIndex;
         const cardIndexLoser = leftIndex + 1; //eliminate the other card
-        props.finalList[cardIndexWinner].points++;
+        list[cardIndexWinner].points++;
         endOfRound(cardIndexLoser, cardIndexWinner);
     };
 
@@ -70,12 +67,12 @@ function GamePlay(props) {
         setVoteStatus("r");
         const cardIndexWinner = leftIndex + 1;
         const cardIndexLoser = leftIndex; //eliminate the other card
-        props.finalList[cardIndexWinner].points++;
+        list[cardIndexWinner].points++;
         endOfRound(cardIndexLoser);
     };
 
     function addToEliminatedList(index) {
-        const elimatedObj = props.finalList[index];
+        const elimatedObj = list[index];
         const obj = {};
         obj.name = elimatedObj.name;
         obj.points = elimatedObj.points;
@@ -92,14 +89,19 @@ function GamePlay(props) {
         setHidden(true); //slide cards down.
         await wait(300); // wait for cards to be off screen
         addToEliminatedList(cardIndexLoser);
-        props.deleteItemFromList(cardIndexLoser);
+        deleteItemFromList(cardIndexLoser);
+    };
+
+    const deleteItemFromList = (index) => {
+        const updatedList = [...list.slice(0, index), ...list.slice(index + 1)];
+        setList(updatedList);
     };
 
     const startNextRound = async () => {
         const nextRound = round + 1;
         setRound(nextRound);
         let nextIndex = leftIndex + 1;
-        if (nextIndex >= props.finalList.length - 1) nextIndex = 0; // don't go out of bounds
+        if (nextIndex >= list.length - 1) nextIndex = 0; // don't go out of bounds
         setLeftIndex(nextIndex);
         setVoteStatus("");
         setHidden(false);
@@ -163,7 +165,7 @@ function GamePlay(props) {
                     ${voteStatus === "r" ? "fade-out" : ""}
                     `}
                 >
-                    <Card obj={props.finalList[leftIndex]} vote={leftVote} />
+                    <Card obj={list[leftIndex]} vote={leftVote} />
                 </div>
                 <h2
                     className={`frame__soft-black
@@ -178,7 +180,7 @@ function GamePlay(props) {
                     }`}
                 >
                     <Card
-                        obj={props.finalList[leftIndex + 1]}
+                        obj={list[leftIndex + 1]}
                         vote={rightVote}
                         offset={true}
                     />

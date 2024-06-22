@@ -7,19 +7,19 @@ import BackgroundVideo from "../Background Video/BackgroundVideo";
 import Footer from "../../components/Footer/Footer";
 import Leaderboard from "../../components/Leaderboard/Leaderboard";
 
-function GameSetup(props) {
+function GameSetup() {
     const [availableList, setAvailableList] = useState([]);
     const [yourList, setYourList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showLeaderboard, setShowLeaderboard] = useState(false);
     const baseUrl = "http://localhost:5050";
     const navigate = useNavigate();
+    var listKey = 0;
+
     useEffect(() => {
         const fetchNamesAndFlags = async () => {
             try {
                 const targetURL = `${baseUrl}/destinations/names-flags-list`;
-
-                // console.log(targetURL);
                 const response = await axios.get(targetURL);
                 const data = response.data;
                 shuffleList(data);
@@ -71,7 +71,6 @@ function GameSetup(props) {
     const fetchDestinationObj = async (name) => {
         try {
             const targetURL = `${baseUrl}/destinations/${name}`;
-
             const response = await axios.get(targetURL);
             return response.data;
         } catch (error) {
@@ -91,9 +90,10 @@ function GameSetup(props) {
             obj.points = 0;
             final = [...final, obj];
         }
-        console.table(final);
-        props.gameReady(final);
+
+        shuffleList(final);
         sessionStorage.clear();
+        sessionStorage.setItem("list", JSON.stringify(final));
         navigate("/play");
     };
 
@@ -103,6 +103,11 @@ function GameSetup(props) {
     const toggleLeaderboard = () => {
         setShowLeaderboard(!showLeaderboard);
     };
+
+    function getListKey() {
+        listKey++;
+        return listKey;
+    }
     //================= HTML ====================
     const backButton = (
         <button className="button footer__button" onClick={navBack}>
@@ -144,7 +149,6 @@ function GameSetup(props) {
             </>
         );
     } else {
-        console.log(availableList.length);
         return (
             <>
                 <BackgroundVideo featuredVid={featuredVid} />
@@ -157,7 +161,10 @@ function GameSetup(props) {
                             </h1>
                             <ul className="country__ul">
                                 {availableList.map((item) => (
-                                    <li className="frame__soft-black country__li">
+                                    <li
+                                        className="frame__soft-black country__li"
+                                        key={getListKey()}
+                                    >
                                         <h5 className="no-margin">
                                             {item.name}
                                         </h5>
@@ -197,7 +204,10 @@ function GameSetup(props) {
                                     </p>
                                 </li>
                                 {yourList.map((item) => (
-                                    <li className="country__li your-list__li">
+                                    <li
+                                        className="country__li your-list__li"
+                                        key={getListKey()}
+                                    >
                                         <h5 className="no-margin">
                                             {item.name}
                                         </h5>

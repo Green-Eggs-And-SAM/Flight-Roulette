@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 function CardStatic(props) {
     const [photoIndex, setPhotoIndex] = useState(0);
 
-    const interval = 2100;
+    const interval = 2000;
 
     //alternate between left and right photos.
     var alternate = false;
