@@ -6,7 +6,7 @@ import BackgroundVideo from "../Background Video/BackgroundVideo";
 import "./GamePlay.scss";
 import ProgressBar from "@atlaskit/progress-bar";
 
-function GamePlay(props) {
+function GamePlay() {
     const [eliminatedList, setEliminatedList] = useState([]);
     const [round, setRound] = useState(1);
     const [totalRounds, setTotalRounds] = useState(1);
@@ -20,30 +20,17 @@ function GamePlay(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!props) {
-            navigate("/setup");
-        }
-
         if (list.length <= 1) {
-            // end of game. this is the winning vote
-            if (
-                sessionStorage["winner"] ||
-                sessionStorage["honorableMentions"]
-            ) {
-                navigate("/winner");
-                return;
-            } else {
-                sessionStorage.setItem("winner", JSON.stringify(list[0])); //winner is last remaining item.
-                //sort losers
-                eliminatedList.sort((a, b) => b.points - a.points);
+            sessionStorage.setItem("winner", JSON.stringify(list[0])); //winner is last remaining item.
+            //sort losers
+            eliminatedList.sort((a, b) => b.points - a.points);
 
-                sessionStorage.setItem(
-                    "honorableMentions",
-                    JSON.stringify(eliminatedList)
-                );
-                navigate("/winner");
-                return;
-            }
+            sessionStorage.setItem(
+                "honorableMentions",
+                JSON.stringify(eliminatedList)
+            );
+            navigate("/winner");
+            return;
         } else if (voteStatus !== "") {
             startNextRound();
         }

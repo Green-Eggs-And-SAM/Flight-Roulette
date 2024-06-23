@@ -7,7 +7,6 @@ import Credit from "../../components/Credit/Credit.js";
 import Leaderboard from "../../components/Leaderboard/Leaderboard.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { browserHistory } from "react-router";
 import axios from "axios";
 
 function GameWinner() {
