@@ -1,10 +1,12 @@
+@use "../../styles/variables" as *;
 .score-list-item {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
 
     margin: 0.1rem 0;
+    width: 100%;
     & * {
         margin: 0;
     }
@@ -12,17 +14,37 @@
         width: 6rem;
     }
     &__points {
-        width: 8rem;
+        width: 2rem;
+        @include tablet {
+            width: 6rem;
+        }
     }
     &__hotel {
-        width: 12rem;
+        width: 4rem;
+        @include tablet {
+            width: 12rem;
+        }
         & a {
             color: white;
         }
     }
 
     &__activity {
-        width: 13rem;
+        width: 5rem;
+        @include tablet {
+            width: 13rem;
+        }
+
+        & a {
+            color: white;
+        }
+    }
+
+    &__restaurant {
+        width: 5rem;
+        @include tablet {
+            width: 13rem;
+        }
         & a {
             color: white;
         }
@@ -30,7 +52,7 @@
     &__flag {
         height: 1rem;
         &--container {
-            width: 6rem;
+            width: 2rem;
         }
     }
 }

@@ -168,16 +168,20 @@ function GameSetup() {
                                         <h5 className="no-margin">
                                             {item.name}
                                         </h5>
-                                        <img
-                                            className="country__li--flag"
-                                            src={item.flag}
-                                        />
-                                        <button
-                                            onClick={() => addToYourList(item)}
-                                            className="setup-button setup-button__green"
-                                        >
-                                            +
-                                        </button>
+                                        <div className="row center">
+                                            <img
+                                                className="country__li--flag"
+                                                src={item.flag}
+                                            />
+                                            <button
+                                                onClick={() =>
+                                                    addToYourList(item)
+                                                }
+                                                className="setup-button setup-button__green"
+                                            >
+                                                +
+                                            </button>
+                                        </div>
                                     </li>
                                 ))}
                             </ul>
@@ -211,18 +215,20 @@ function GameSetup() {
                                         <h5 className="no-margin">
                                             {item.name}
                                         </h5>
-                                        <img
-                                            className="country__li--flag"
-                                            src={item.flag}
-                                        />
-                                        <button
-                                            onClick={() =>
-                                                removeFromYourList(item)
-                                            }
-                                            className="setup-button__red "
-                                        >
-                                            -
-                                        </button>
+                                        <div className="row center">
+                                            <img
+                                                className="country__li--flag"
+                                                src={item.flag}
+                                            />
+                                            <button
+                                                onClick={() =>
+                                                    removeFromYourList(item)
+                                                }
+                                                className="setup-button__red "
+                                            >
+                                                -
+                                            </button>
+                                        </div>
                                     </li>
                                 ))}
                             </ul>

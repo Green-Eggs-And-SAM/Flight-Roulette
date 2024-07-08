@@ -115,15 +115,17 @@ function GameWinner() {
     if (showLeaderboard) {
         return (
             <>
-                <BackgroundVideo featuredVid={featuredVid} />
+                <div className="column center">
+                    <BackgroundVideo featuredVid={featuredVid} />
 
-                <Leaderboard />
+                    <Leaderboard />
 
-                <Credit />
-                <Footer
-                    leftButton={globalLeaderboard}
-                    rightButton={setupButton}
-                />
+                    <Credit />
+                    <Footer
+                        leftButton={globalLeaderboard}
+                        rightButton={setupButton}
+                    />
+                </div>
             </>
         );
     } else if (winner) {

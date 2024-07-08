@@ -41,13 +41,13 @@
     }
 
     &-back {
-        background-color: $flight-roulette-darkamber;
-        color: white;
+        background-color: $flight-roulette-amber;
+        color: black;
         transform: rotateY(180deg);
     }
     &__flag {
         border-radius: 0;
-        width: 70%;
+        height: 40%;
     }
     &__img,
     & video {

@@ -58,5 +58,13 @@
 
 .description {
     text-align: justify;
-    width: 70%;
+    width: 95%;
+    margin-right: 3rem;
+    margin-left: 3rem;
+    @include tablet {
+        width: 80%;
+    }
+    @include desktop {
+        width: 65%;
+    }
 }
