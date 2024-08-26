@@ -3,15 +3,6 @@ import useWindowDimensions from "../windowDimensions";
 import { useEffect, useState } from "react";
 
 function ScoreboardListItem(props) {
-    console.log(useWindowDimensions());
-    // const [isMobile, setMobile] = useState(true);
-    // useEffect(() => {
-    //     const width = useWindowDimensions().width;
-    //     if (width < 768) setMobile(true);
-    //     else setMobile(false);
-    //     console.log(isMobile);
-    // }, useWindowDimensions().width);
-
     const { height, width } = useWindowDimensions();
     const linkToHotel = (
         <a
